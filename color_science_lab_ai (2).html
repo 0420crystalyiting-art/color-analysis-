@@ -1,0 +1,1978 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Science Lab | 亞洲膚質與 AI 個人色彩檢定</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Noto+Sans+TC:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#faf8f5',
+                            100: '#f4efe6',
+                            200: '#e7dccb',
+                            800: '#2c2825',
+                            900: '#1a1816',
+                            accent: '#c5a059',
+                            rose: '#d4a39b'
+                        }
+                    },
+                    fontFamily: {
+                        serif: ['"Cormorant Garamond"', 'serif'],
+                        sans: ['"Noto Sans TC"', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #faf8f5;
+            color: #2c2825;
+        }
+        .font-serif-title {
+            font-family: 'Cormorant Garamond', serif;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #d1c7b7;
+            border-radius: 3px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f4efe6;
+        }
+        .crosshair-cursor {
+            cursor: crosshair;
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between selection:bg-brand-accent selection:text-white">
+
+    <header class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-brand-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <div class="w-10 h-10 rounded-full bg-brand-900 flex items-center justify-center text-white font-serif-title font-bold text-xl">
+                    CS
+                </div>
+                <div>
+                    <span class="font-serif-title text-2xl font-bold tracking-wide text-brand-900 block leading-none">COLOR SCIENCE LAB</span>
+                    <span class="text-[10px] tracking-widest text-brand-accent uppercase font-medium">Asian Skin & Personal Color Institute</span>
+                </div>
+            </div>
+            
+            <nav class="hidden md:flex items-center space-x-8 text-sm font-medium text-gray-700">
+                <a href="#lab-section" class="hover:text-brand-accent transition">線上色彩檢定</a>
+                <a href="#body-shape-section" class="hover:text-brand-accent transition">身材與體型檢定</a>
+                <a href="#shades-section" class="hover:text-brand-accent transition">亞洲大眾色號</a>
+                <a href="#guide-section" class="hover:text-brand-accent transition">四季十二型分析</a>
+                <a href="#ai-consultant" class="hover:text-brand-accent transition">AI 美妝與穿搭諮詢</a>
+            </nav>
+
+            <a href="#lab-section" class="inline-flex items-center justify-center px-5 py-2.5 rounded-full text-xs font-semibold tracking-wider uppercase text-white bg-brand-900 hover:bg-brand-accent transition shadow-sm">
+                立即測色 <i class="fa-solid fa-arrow-right ml-2 text-[10px]"></i>
+            </a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <section class="relative bg-brand-50 py-16 lg:py-24 border-b border-brand-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-12 gap-12 items-center">
+                <div class="md:col-span-7 space-y-6">
+                    <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full bg-brand-100 text-brand-800 text-xs font-medium">
+                        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+                        <span>光學分光技術與 AI 色彩模型驅動</span>
+                    </div>
+                    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif-title font-bold text-brand-900 leading-tight">
+                        以科學驅動美學 ——<br>
+                        <span class="italic text-brand-accent font-normal">亞洲個人色彩</span> 精準檢定
+                    </h1>
+                    <p class="text-base sm:text-lg text-gray-600 leading-relaxed max-w-2xl">
+                        只需上傳一張清晰的個人照片，色彩學演算法能精準分析您的膚色底色（Undertone）、色調明暗與對比度，解鎖屬於您的命定四季色彩、服飾剪裁與大眾粉底色號（21N, 21C, 23N）。
+                    </p>
+                    
+                    <div class="pt-2 flex flex-wrap gap-4 items-center">
+                        <a href="#lab-section" class="px-8 py-4 rounded-full bg-brand-900 text-white font-medium hover:bg-brand-accent transition shadow-lg flex items-center">
+                            <i class="fa-solid fa-camera mr-2"></i> 上傳照片開始檢定
+                        </a>
+                        <div class="flex items-center space-x-4 text-xs text-gray-500 pl-2">
+                            <span><i class="fa-solid fa-shield-halved text-emerald-600 mr-1"></i> 照片僅供本機即時分析</span>
+                            <span><i class="fa-solid fa-check text-emerald-600 mr-1"></i> 免費無須註冊</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-5">
+                    <div class="relative mx-auto max-w-md rounded-2xl bg-white p-4 shadow-xl border border-brand-100 rotate-1 transition hover:rotate-0">
+                        <div class="relative rounded-xl overflow-hidden aspect-[4/5] bg-brand-100">
+                            <img id="hero-img-sample" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&q=80&w=800" alt="Personal color reference model" class="w-full h-full object-cover">
+                            <div class="absolute bottom-3 left-3 right-3 bg-white/90 backdrop-blur-md p-3 rounded-lg shadow-sm border border-white/50 text-xs flex justify-between items-center">
+                                <div>
+                                    <p class="font-bold text-brand-900">測色標本 #A-2026</p>
+                                    <p class="text-gray-500 text-[11px]">判定結果：柔和冷夏型 (Soft Summer)</p>
+                                </div>
+                                <span class="px-2.5 py-1 rounded bg-rose-100 text-rose-800 font-medium text-[10px]">適配色號: 21C</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="lab-section" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-3xl mx-auto mb-12">
+                <span class="text-xs font-bold tracking-widest text-brand-accent uppercase">AI Skin Analysis Tool</span>
+                <h2 class="text-3xl sm:text-4xl font-serif-title font-bold text-brand-900 mt-1">照片上傳與色彩光學分析儀</h2>
+                <p class="text-gray-600 mt-2 text-sm sm:text-base">請上傳自然光下無濾鏡的照片，以獲得最精準的個人色彩與底色（Undertone）測定。</p>
+            </div>
+
+            <div class="grid lg:grid-cols-12 gap-8 items-start">
+                <!-- Left Panel: Upload / Canvas Inspector -->
+                <div class="lg:col-span-7 bg-white p-6 rounded-2xl shadow-sm border border-brand-100 space-y-6">
+                    <div class="flex items-center justify-between border-b border-gray-100 pb-4">
+                        <h3 class="font-bold text-brand-900 flex items-center">
+                            <i class="fa-solid fa-image text-brand-accent mr-2"></i> 步驟 1：選擇照片與取色
+                        </h3>
+                        <div class="text-xs text-gray-500">
+                            <span id="image-status-badge" class="px-2 py-0.5 rounded bg-gray-100">未選擇檔案</span>
+                        </div>
+                    </div>
+
+                    <!-- Dropzone -->
+                    <div id="dropzone" class="border-2 border-dashed border-brand-200 hover:border-brand-accent rounded-xl p-8 text-center bg-brand-50/50 transition cursor-pointer relative group">
+                        <input type="file" id="photo-input" accept="image/*" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10">
+                        <div class="space-y-3 pointer-events-none">
+                            <div class="w-14 h-14 mx-auto rounded-full bg-brand-100 text-brand-accent flex items-center justify-center text-xl group-hover:scale-110 transition">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                            </div>
+                            <div>
+                                <p class="text-sm font-semibold text-brand-900">點擊上傳 或 拖曳照片至此處</p>
+                                <p class="text-xs text-gray-400 mt-1">支援 JPG, PNG, WEBP（建議正面、自然光線、無遮擋）</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Canvas Inspector -->
+                    <div id="canvas-container" class="hidden space-y-4">
+                        <div class="flex flex-wrap items-center justify-between gap-2 text-xs bg-brand-50 p-3 rounded-lg border border-brand-100">
+                            <span class="text-gray-600"><i class="fa-solid fa-hand-pointer text-brand-accent mr-1"></i> 點擊照片上的<b>皮膚/臉頰</b>位置以手動取色</span>
+                            <button id="btn-auto-sample" class="px-3 py-1.5 bg-brand-900 text-white rounded hover:bg-brand-accent transition text-xs font-medium">
+                                <i class="fa-solid fa-wand-magic-sparkles mr-1"></i> AI 自動智慧偵測膚色
+                            </button>
+                        </div>
+
+                        <div class="relative max-h-[480px] overflow-hidden rounded-xl border border-gray-200 bg-gray-900 flex items-center justify-center">
+                            <canvas id="photo-canvas" class="max-w-full max-h-[460px] object-contain crosshair-cursor"></canvas>
+                        </div>
+
+                        <!-- Calibration Sliders -->
+                        <div class="p-4 bg-gray-50 rounded-xl space-y-3 border border-gray-100 text-xs">
+                            <div class="flex justify-between items-center font-semibold text-brand-900">
+                                <span><i class="fa-solid fa-sliders mr-1 text-brand-accent"></i> 環境光補償與白平衡微調</span>
+                                <button id="btn-reset-calibration" class="text-gray-400 hover:text-brand-900">重置</button>
+                            </div>
+                            <div class="grid sm:grid-cols-2 gap-4">
+                                <div>
+                                    <div class="flex justify-between text-gray-500 mb-1">
+                                        <span>色溫校正 (Warm / Cool)</span>
+                                        <span id="temp-val">0</span>
+                                    </div>
+                                    <input type="range" id="slider-temp" min="-30" max="30" value="0" class="w-full accent-brand-accent">
+                                </div>
+                                <div>
+                                    <div class="flex justify-between text-gray-500 mb-1">
+                                        <span>曝光/明度微調</span>
+                                        <span id="bright-val">0</span>
+                                    </div>
+                                    <input type="range" id="slider-bright" min="-30" max="30" value="0" class="w-full accent-brand-accent">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Panel: Sampling Points & Analyze Button -->
+                <div class="lg:col-span-5 space-y-6">
+                    <div class="bg-white p-6 rounded-2xl shadow-sm border border-brand-100 space-y-6">
+                        <h3 class="font-bold text-brand-900 border-b border-gray-100 pb-4 flex items-center">
+                            <i class="fa-solid fa-eye-dropper text-brand-accent mr-2"></i> 步驟 2：色彩數據採樣點
+                        </h3>
+
+                        <div class="space-y-4">
+                            <!-- Skin Spot -->
+                            <div class="p-3.5 rounded-xl border border-gray-100 bg-brand-50/40 flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div id="swatch-skin" class="w-10 h-10 rounded-full border-2 border-white shadow-sm bg-amber-100 flex items-center justify-center text-xs text-gray-400">?</div>
+                                    <div>
+                                        <p class="text-xs font-bold text-brand-900">臉頰/面部主要膚色</p>
+                                        <p id="hex-skin" class="text-[11px] text-gray-500 font-mono">尚未採樣</p>
+                                    </div>
+                                </div>
+                                <span class="text-[10px] px-2 py-1 bg-white rounded border border-gray-200 text-gray-600">主要基準點</span>
+                            </div>
+
+                            <!-- Lip Spot -->
+                            <div class="p-3.5 rounded-xl border border-gray-100 bg-brand-50/40 flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div id="swatch-lip" class="w-10 h-10 rounded-full border-2 border-white shadow-sm bg-rose-100 flex items-center justify-center text-xs text-gray-400">?</div>
+                                    <div>
+                                        <p class="text-xs font-bold text-brand-900">唇色/自然紅潤度</p>
+                                        <p id="hex-lip" class="text-[11px] text-gray-500 font-mono">尚未採樣 (可點擊圖片採樣)</p>
+                                    </div>
+                                </div>
+                                <button id="set-target-lip" class="text-[11px] text-brand-accent hover:underline">指定此點</button>
+                            </div>
+
+                            <!-- Hair/Eye Spot -->
+                            <div class="p-3.5 rounded-xl border border-gray-100 bg-brand-50/40 flex items-center justify-between">
+                                <div class="flex items-center space-x-3">
+                                    <div id="swatch-hair" class="w-10 h-10 rounded-full border-2 border-white shadow-sm bg-stone-700 flex items-center justify-center text-xs text-gray-400">?</div>
+                                    <div>
+                                        <p class="text-xs font-bold text-brand-900">髮色/瞳孔明暗度</p>
+                                        <p id="hex-hair" class="text-[11px] text-gray-500 font-mono">尚未採樣</p>
+                                    </div>
+                                </div>
+                                <button id="set-target-hair" class="text-[11px] text-brand-accent hover:underline">指定此點</button>
+                            </div>
+                        </div>
+
+                        <button id="btn-analyze" disabled class="w-full py-4 rounded-xl bg-gray-300 text-gray-500 font-bold text-sm tracking-wider uppercase transition shadow duration-200 cursor-not-allowed">
+                            <i class="fa-solid fa-microscope mr-2"></i> 開始個人色彩分析
+                        </button>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-amber-50/60 border border-amber-200/60 text-xs text-amber-900 space-y-1">
+                        <p class="font-bold"><i class="fa-solid fa-lightbulb mr-1 text-amber-600"></i> 測色小小訣竅：</p>
+                        <p class="text-amber-800 leading-relaxed">請優先選取臉頰中央未受強烈陰影照射的區域。若照片偏黃或偏藍，請先利用左側的白平衡滑桿進行微調校正。</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="result-section" class="hidden mt-16 pt-12 border-t border-brand-200 space-y-10">
+                <div class="text-center max-w-3xl mx-auto">
+                    <span class="px-3 py-1 rounded-full bg-emerald-100 text-emerald-800 text-xs font-bold tracking-wide">Analysis Complete</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif-title font-bold text-brand-900 mt-2">您的個人色彩學診斷報告</h2>
+                    <p class="text-gray-600 text-sm mt-1">系統綜合色度學（Chroma）、明度（Value）與冷暖調（Undertone）評定結果</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-6">
+                    <!-- Season Diagnosis Card -->
+                    <div class="bg-gradient-to-br from-brand-900 to-brand-800 text-white rounded-2xl p-6 shadow-xl relative overflow-hidden flex flex-col justify-between">
+                        <div class="absolute -right-10 -bottom-10 w-40 h-40 rounded-full bg-brand-accent/20 blur-2xl"></div>
+                        <div>
+                            <span class="text-xs uppercase tracking-widest text-brand-accent font-semibold">Primary Classification</span>
+                            <h3 id="res-season-name" class="text-3xl font-serif-title font-bold text-white mt-1">柔和冷夏型 (Soft Summer)</h3>
+                            <p id="res-season-desc" class="text-xs text-brand-100 mt-3 leading-relaxed">
+                                您的膚色具備細緻的粉青冷調基底，整體明度中等、帶有朦朧高級灰的柔和質感。適合帶有低飽和度的優雅冷色調。
+                            </p>
+                        </div>
+
+                        <div class="mt-8 pt-4 border-t border-white/10 flex items-center justify-between text-xs">
+                            <span class="text-gray-300">冷暖底色屬性</span>
+                            <span id="res-undertone-tag" class="font-bold px-2.5 py-1 rounded bg-white/10 text-brand-accent">冷色調 (Cool Undertone)</span>
+                        </div>
+                    </div>
+
+                    <!-- Foundation Match Card -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-brand-100 flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center">
+                                <span class="text-xs uppercase tracking-widest text-brand-accent font-semibold">Mass Market Shade</span>
+                                <span class="text-[10px] px-2 py-0.5 rounded bg-brand-100 text-brand-800 font-medium">亞洲大眾色號比對</span>
+                            </div>
+                            <h3 id="res-shade-code" class="text-4xl font-serif-title font-bold text-brand-900 mt-2">21C / 21N</h3>
+                            <p class="text-xs text-gray-500 mt-1">明度 21 號 · 粉冷色調至自然偏冷底色</p>
+                            
+                            <div class="mt-4 p-3 bg-brand-50 rounded-lg text-xs space-y-1.5 text-gray-700">
+                                <p><b>推薦底妝質地：</b> <span id="res-foundation-texture">微光澤奶油肌 / 薄透水光粉底</span></p>
+                                <p><b>防曬光效校正：</b> <span id="res-sunscreen-tip">選用紫色或粉色妝前乳校正暗沉</span></p>
+                            </div>
+                        </div>
+
+                        <div class="mt-6 flex items-center space-x-2 text-xs text-gray-400">
+                            <i class="fa-solid fa-circle-check text-emerald-500"></i>
+                            <span>符合 ISO 22716 測色演算法比對標準</span>
+                        </div>
+                    </div>
+
+                    <!-- Tone Parameters Progress Bars -->
+                    <div class="bg-white rounded-2xl p-6 shadow-sm border border-brand-100 space-y-4">
+                        <h4 class="font-bold text-brand-900 text-sm border-b border-gray-100 pb-2">色彩三要素分析指標</h4>
+                        
+                        <div class="space-y-3 text-xs">
+                            <div>
+                                <div class="flex justify-between text-gray-600 mb-1">
+                                    <span>冷暖度 (Temperature)</span>
+                                    <span id="bar-temp-text" class="font-bold text-brand-900">偏冷 68%</span>
+                                </div>
+                                <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden flex">
+                                    <div id="bar-temp-fill" class="bg-blue-400 h-full transition-all duration-500" style="width: 68%;"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-gray-600 mb-1">
+                                    <span>明亮度 (Lightness)</span>
+                                    <span id="bar-light-text" class="font-bold text-brand-900">中高明度 72%</span>
+                                </div>
+                                <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <div id="bar-light-fill" class="bg-amber-300 h-full transition-all duration-500" style="width: 72%;"></div>
+                                </div>
+                            </div>
+
+                            <div>
+                                <div class="flex justify-between text-gray-600 mb-1">
+                                    <span>彩度/鮮豔度 (Chroma)</span>
+                                    <span id="bar-chroma-text" class="font-bold text-brand-900">柔和/低彩度 45%</span>
+                                </div>
+                                <div class="w-full h-2 bg-gray-100 rounded-full overflow-hidden">
+                                    <div id="bar-chroma-fill" class="bg-rose-400 h-full transition-all duration-500" style="width: 45%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-2 text-[11px] text-gray-400">
+                            *數據根據採樣區域 L*a*b* 色彩空間加權計算
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Palette Recommendations -->
+                <div class="bg-white p-8 rounded-2xl shadow-sm border border-brand-100 space-y-8">
+                    <div class="flex flex-col sm:flex-row justify-between sm:items-center gap-4 border-b border-gray-100 pb-6">
+                        <div>
+                            <h3 class="text-2xl font-serif-title font-bold text-brand-900">專屬個人色彩指南與命定色卡</h3>
+                            <p class="text-xs text-gray-500 mt-1">包含穿搭最佳配色、唇彩/眼影色號與避雷地雷色</p>
+                        </div>
+                        <div class="flex flex-wrap gap-2 self-start sm:self-auto">
+                            <button id="btn-email-modal-open" class="px-4 py-2 rounded-lg bg-brand-900 text-white hover:bg-brand-accent text-xs font-semibold transition flex items-center shadow-sm">
+                                <i class="fa-solid fa-envelope mr-1.5"></i> 寄送簡報至信箱
+                            </button>
+                            <button id="btn-copy-report" class="px-4 py-2 rounded-lg bg-brand-100 text-brand-900 hover:bg-brand-200 text-xs font-semibold transition">
+                                <i class="fa-solid fa-copy mr-1"></i> 複製診斷簡報內容
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                        <div class="space-y-3">
+                            <h4 class="text-xs font-bold text-brand-900 uppercase tracking-wider flex items-center">
+                                <i class="fa-solid fa-circle text-emerald-500 text-[10px] mr-2"></i> 命定穿搭色系 (Best Colors)
+                            </h4>
+                            <div id="palette-best" class="grid grid-cols-4 gap-2"></div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <h4 class="text-xs font-bold text-brand-900 uppercase tracking-wider flex items-center">
+                                <i class="fa-solid fa-heart text-rose-500 text-[10px] mr-2"></i> 最佳彩妝/唇色彩盤
+                            </h4>
+                            <div id="palette-makeup" class="grid grid-cols-4 gap-2"></div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <h4 class="text-xs font-bold text-brand-900 uppercase tracking-wider flex items-center">
+                                <i class="fa-solid fa-circle-xmark text-rose-600 text-[10px] mr-2"></i> 應避開的踩雷色 (Avoid)
+                            </h4>
+                            <div id="palette-avoid" class="grid grid-cols-4 gap-2"></div>
+                        </div>
+
+                        <div class="space-y-3 bg-brand-50/50 p-4 rounded-xl border border-brand-100 text-xs">
+                            <h4 class="font-bold text-brand-900 uppercase tracking-wider flex items-center">
+                                <i class="fa-solid fa-gem text-amber-600 mr-2"></i> 最佳飾品金屬色
+                            </h4>
+                            <div id="res-jewelry-text" class="text-gray-700 leading-relaxed font-medium">
+                                推薦玫瑰金與冷光銀飾，能襯托膚質的晶透感；盡量避開高飽和的古銅金與黃金。
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Total Look Style Suggestion Card -->
+                    <div id="res-combined-style-card" class="mt-8 p-6 bg-brand-50/60 rounded-2xl border border-brand-200 space-y-4">
+                        <div class="flex items-center justify-between border-b border-brand-200 pb-3">
+                            <h4 class="font-bold text-brand-900 text-sm flex items-center">
+                                <i class="fa-solid fa-wand-magic-sparkles text-brand-accent mr-2"></i> 整體形象美學提案：個人色彩 × 身材版型 × 命定妝容
+                            </h4>
+                            <span id="res-body-type-badge" class="px-3 py-1 rounded-full bg-brand-900 text-white text-[11px] font-semibold">
+                                未選擇體型（可至下方完成體型測量）
+                            </span>
+                        </div>
+                        <div class="grid md:grid-cols-2 gap-6 text-xs leading-relaxed text-gray-700">
+                            <div class="space-y-2">
+                                <p class="font-bold text-brand-900 flex items-center">
+                                    <i class="fa-solid fa-shirt text-brand-accent mr-1.5"></i> 推薦服飾剪裁與版型重點：
+                                </p>
+                                <div id="res-clothing-recommendation" class="bg-white p-3.5 rounded-xl border border-brand-100 text-gray-600">
+                                    請完成下方「身材體型檢定」，系統將根據您的肩腰臀比例自動推薦命定衣服版型、領口切線與修飾技巧。
+                                </div>
+                            </div>
+                            <div class="space-y-2">
+                                <p class="font-bold text-brand-900 flex items-center">
+                                    <i class="fa-solid fa-spa text-brand-accent mr-1.5"></i> 命定妝容與氣場氛圍搭配：
+                                </p>
+                                <div id="res-makeup-look-recommendation" class="bg-white p-3.5 rounded-xl border border-brand-100 text-gray-600">
+                                    完成色彩與體型雙重診斷後，將為您生成包含底妝質感、眼唇色調及整體妝容氛圍的完整造型指南。
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- AI Generated Visual Preview Section -->
+                        <div class="pt-3 border-t border-brand-200/60 flex flex-col items-center space-y-3">
+                            <button id="btn-generate-ai-image" class="px-6 py-3 rounded-full bg-gradient-to-r from-brand-900 via-brand-800 to-brand-accent text-white font-bold text-xs shadow-md hover:shadow-lg transition flex items-center space-x-2 cursor-pointer">
+                                <i class="fa-solid fa-wand-magic-sparkles text-amber-300"></i>
+                                <span>🎨 AI 模擬生成命定穿搭與妝容視覺圖</span>
+                            </button>
+                            
+                            <div id="ai-image-container" class="hidden w-full max-w-md mx-auto rounded-xl border border-brand-200 overflow-hidden bg-white shadow-sm p-3 text-center space-y-3">
+                                <div id="ai-image-loading" class="hidden p-8 space-y-3">
+                                    <i class="fa-solid fa-spinner animate-spin text-3xl text-brand-accent"></i>
+                                    <p class="text-xs text-brand-900 font-semibold">Gemini AI 正在為您繪製專屬造型示意圖...</p>
+                                    <p class="text-[10px] text-gray-400">保留您照片面容並根據個人色彩與身材剪裁生成中</p>
+                                </div>
+                                <div id="ai-image-result" class="hidden space-y-2">
+                                    <img id="img-style-preview" src="" alt="AI Generated Style Preview" class="w-full h-auto rounded-lg shadow border border-gray-100 object-cover">
+                                    <p class="text-[11px] text-gray-500 italic">✨ Gemini 3.1 Flash Image 人臉辨識模擬生成之命定穿搭與妝容圖</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="body-shape-section" class="py-16 bg-white border-y border-brand-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+                <div class="text-center max-w-3xl mx-auto">
+                    <span class="text-xs font-bold tracking-widest text-brand-accent uppercase">Body Silhouette Analyzer</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif-title font-bold text-brand-900 mt-1">身材與骨骼體型檢定</h2>
+                    <p class="text-gray-600 mt-2 text-sm sm:text-base">結合身高體重、體脂率與肩膀、腰圍、臀部線條特徵，精準診斷您的體型與身高比例，提供專屬的修飾穿搭切線。</p>
+                </div>
+
+                <div class="grid lg:grid-cols-12 gap-8 items-start">
+                    <!-- Form Questions -->
+                    <div class="lg:col-span-6 bg-brand-50/50 p-6 rounded-2xl border border-brand-100 space-y-5 text-xs">
+                        <h3 class="font-bold text-brand-900 text-sm border-b border-brand-200 pb-3 flex items-center">
+                            <i class="fa-solid fa-ruler-combined text-brand-accent mr-2"></i> 步驟 1：輸入個人身高體重與基本數據
+                        </h3>
+
+                        <!-- Numeric Inputs -->
+                        <div class="grid grid-cols-3 gap-3">
+                            <div class="space-y-1.5">
+                                <label for="input-height" class="font-semibold text-gray-700 block">身高 (cm)</label>
+                                <input type="number" id="input-height" placeholder="例如: 162" min="100" max="220" class="w-full p-2.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-brand-accent text-xs">
+                            </div>
+                            <div class="space-y-1.5">
+                                <label for="input-weight" class="font-semibold text-gray-700 block">體重 (kg)</label>
+                                <input type="number" id="input-weight" placeholder="例如: 52" min="30" max="200" class="w-full p-2.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-brand-accent text-xs">
+                            </div>
+                            <div class="space-y-1.5">
+                                <label for="input-bodyfat" class="font-semibold text-gray-700 block">體脂率 (%) <span class="text-gray-400 font-normal">(選填)</span></label>
+                                <input type="number" id="input-bodyfat" placeholder="例如: 24" min="5" max="60" class="w-full p-2.5 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-brand-accent text-xs">
+                            </div>
+                        </div>
+
+                        <h3 class="font-bold text-brand-900 text-sm border-b border-brand-200 pb-3 pt-2 flex items-center">
+                            <i class="fa-solid fa-person text-brand-accent mr-2"></i> 步驟 2：選擇您的視覺輪廓與骨骼特徵
+                        </h3>
+
+                        <!-- Question 1 -->
+                        <div class="space-y-1.5">
+                            <label for="select-shoulder-hip" class="font-semibold text-gray-700 block">1. 肩寬與臀圍視覺對比：</label>
+                            <select id="select-shoulder-hip" class="w-full p-3 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-brand-accent text-xs">
+                                <option value="balanced">肩圍與臀圍寬度接近，比例平衡</option>
+                                <option value="hip-wider">臀部/大腿視覺較肩膀寬豐滿 (下身較有份量)</option>
+                                <option value="shoulder-wider">肩膀/胸廓視覺較臀部寬 (上身較有份量)</option>
+                            </select>
+                        </div>
+
+                        <!-- Question 2 -->
+                        <div class="space-y-1.5">
+                            <label for="select-waist-definition" class="font-semibold text-gray-700 block">2. 腰線定義與腹部特徵：</label>
+                            <select id="select-waist-definition" class="w-full p-3 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-brand-accent text-xs">
+                                <option value="defined">腰線非常清晰明顯，有顯著 S 曲線</option>
+                                <option value="straight">腰線較平直、縱向長，腰臀差較小</option>
+                                <option value="full">腰腹部較圓潤豐滿，四肢相對纖細</option>
+                            </select>
+                        </div>
+
+                        <!-- Question 3 -->
+                        <div class="space-y-1.5">
+                            <label for="select-bone-feature" class="font-semibold text-gray-700 block">3. 鎖骨與關節骨骼感受：</label>
+                            <select id="select-bone-feature" class="w-full p-3 rounded-xl border border-gray-200 bg-white focus:outline-none focus:border-brand-accent text-xs">
+                                <option value="curvy">肌膚觸感圓潤質感，骨感不明顯</option>
+                                <option value="bony">鎖骨、手腕關節與骨骼感挺拔清晰</option>
+                                <option value="athletic">肌肉線條緊實，線條俐落</option>
+                            </select>
+                        </div>
+
+                        <button id="btn-diagnose-body" class="w-full py-3.5 rounded-xl bg-brand-900 hover:bg-brand-accent text-white font-bold transition shadow">
+                            <i class="fa-solid fa-calculator mr-2"></i> 算出身材體型與命定版型
+                        </button>
+                    </div>
+
+                    <!-- Result Display -->
+                    <div id="body-result-card" class="lg:col-span-6 bg-white p-6 rounded-2xl border border-brand-100 shadow-sm space-y-4 text-xs">
+                        <div class="flex items-center justify-between border-b border-gray-100 pb-3">
+                            <div>
+                                <span class="text-[10px] uppercase font-bold text-brand-accent">Body Type Classification</span>
+                                <h3 id="res-body-type-name" class="text-2xl font-serif-title font-bold text-brand-900 mt-0.5">梨型 / 波浪型 (Pear / Wave)</h3>
+                            </div>
+                            <div class="text-right">
+                                <span id="res-body-tag" class="px-2.5 py-1 rounded bg-brand-100 text-brand-800 font-semibold block mb-1">上身纖細 · 下身曲線豐富</span>
+                                <span id="res-bmi-tag" class="text-[10px] font-mono text-gray-500 block">BMI: -- · 身高比例: 標準</span>
+                            </div>
+                        </div>
+
+                        <p id="res-body-desc" class="text-gray-600 leading-relaxed">
+                            體型特徵為腰線清晰、上半身相對纖細，但脂肪易堆積於臀部與大腿。適合將視覺重心上移，強調纖細腰線並順流遮掩下半身曲線的穿搭切線。
+                        </p>
+
+                        <div id="res-height-proportions-box" class="p-3 bg-brand-50 rounded-xl border border-brand-100 space-y-1 text-gray-700">
+                            <p class="font-bold text-brand-900 flex items-center"><i class="fa-solid fa-text-height text-brand-accent mr-1.5"></i> 身高比例與線條拉長建議：</p>
+                            <p id="res-height-advice-text" class="text-[11px] text-gray-600">請輸入身高體重以獲得客製化印花尺寸、裙長/褲長與縱向延伸穿搭指南。</p>
+                        </div>
+
+                        <div class="grid sm:grid-cols-2 gap-4 pt-2">
+                            <div class="p-3 bg-emerald-50/60 rounded-xl border border-emerald-100 space-y-1 text-emerald-900">
+                                <p class="font-bold flex items-center text-emerald-800"><i class="fa-solid fa-circle-check mr-1.5"></i> 命定服飾剪裁 (Dos)</p>
+                                <ul id="res-body-dos" class="list-disc list-inside space-y-1 text-[11px] text-emerald-800/90">
+                                    <li>高腰 A 字裙、傘裙、垂墜感闊腿褲</li>
+                                    <li>大方領、露鎖骨一字領上衣</li>
+                                    <li>明確收腰的洋裝與短版外搭</li>
+                                </ul>
+                            </div>
+
+                            <div class="p-3 bg-rose-50/60 rounded-xl border border-rose-100 space-y-1 text-rose-900">
+                                <p class="font-bold flex items-center text-rose-800"><i class="fa-solid fa-circle-xmark mr-1.5"></i> 避雷服飾剪裁 (Don'ts)</p>
+                                <ul id="res-body-donts" class="list-disc list-inside space-y-1 text-[11px] text-rose-800/90">
+                                    <li>低腰緊身窄管褲、包臀魚尾短裙</li>
+                                    <li>大腿處有大口袋的橫紋工裝褲</li>
+                                    <li>完全無腰身的直筒袋狀長裙</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="shades-section" class="py-16 bg-brand-50 border-b border-brand-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                <div class="text-center max-w-3xl mx-auto">
+                    <span class="text-xs font-bold tracking-widest text-brand-accent uppercase">Foundation Color System</span>
+                    <h2 class="text-3xl sm:text-4xl font-serif-title font-bold text-brand-900 mt-1">亞洲大眾粉底色號對照指南</h2>
+                    <p class="text-gray-600 mt-2 text-sm">解析韓國、日本與台灣市場主流底妝明度（13, 21, 23, 25）與底色（C, N, W）轉換標準。</p>
+                </div>
+
+                <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-xs">
+                    <div class="bg-white p-5 rounded-2xl border border-brand-100 shadow-sm space-y-3">
+                        <div class="w-12 h-12 rounded-full bg-[#fcece0] border border-gray-200 flex items-center justify-center font-bold font-serif-title text-brand-900 text-lg">13</div>
+                        <h3 class="font-bold text-brand-900 text-sm">13 號：明亮冷白 / 陶瓷膚色</h3>
+                        <p class="text-gray-500 leading-relaxed">適合白皙透亮、血管呈現紫藍色的冷色底調。對應色號 13C（冷白粉）與 13N（冷瓷白）。</p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-brand-100 shadow-sm space-y-3">
+                        <div class="w-12 h-12 rounded-full bg-[#f7dfcf] border border-gray-200 flex items-center justify-center font-bold font-serif-title text-brand-900 text-lg">21</div>
+                        <h3 class="font-bold text-brand-900 text-sm">21 號：亞洲大眾象牙膚色 (最熱銷)</h3>
+                        <p class="text-gray-500 leading-relaxed">佔東亞女性 60% 以上需求。分成 21C (粉嫩白)、21N (自然白) 與 21W (暖陽象牙)。</p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-brand-100 shadow-sm space-y-3">
+                        <div class="w-12 h-12 rounded-full bg-[#ebd0bd] border border-gray-200 flex items-center justify-center font-bold font-serif-title text-brand-900 text-lg">23</div>
+                        <h3 class="font-bold text-brand-900 text-sm">23 號：自然健美膚色</h3>
+                        <p class="text-gray-500 leading-relaxed">適合健康自然膚色、或喜好裸妝感的人群。23N 具備優異的暗沉遮瑕能力與遮瑕持久度。</p>
+                    </div>
+
+                    <div class="bg-white p-5 rounded-2xl border border-brand-100 shadow-sm space-y-3">
+                        <div class="w-12 h-12 rounded-full bg-[#ddbd9d] border border-gray-200 flex items-center justify-center font-bold font-serif-title text-brand-900 text-lg">25</div>
+                        <h3 class="font-bold text-brand-900 text-sm">25 號：暖陽小麥膚色</h3>
+                        <p class="text-gray-500 leading-relaxed">深暖色調或日照小麥肌。配合黃暖底色可打造具備立體質感的歐美健康奶油光澤肌。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="guide-section" class="py-16 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+            <div class="text-center max-w-3xl mx-auto">
+                <span class="text-xs font-bold tracking-widest text-brand-accent uppercase">12 Seasonal Palette Guide</span>
+                <h2 class="text-3xl sm:text-4xl font-serif-title font-bold text-brand-900 mt-1">四季十二型個人色彩百科</h2>
+                <p class="text-gray-600 mt-2 text-sm sm:text-base">精細切分冷暖、明暗與飽和度，點擊切換頁籤探索四季十二型專屬美學特徵。</p>
+            </div>
+
+            <!-- Tabs -->
+            <div class="flex justify-center space-x-2 sm:space-x-4 border-b border-gray-200 pb-4 text-xs sm:text-sm font-medium">
+                <button class="season-tab px-5 py-2.5 rounded-full bg-brand-900 text-white transition shadow-sm" data-target="spring-content">春季 (Spring)</button>
+                <button class="season-tab px-5 py-2.5 rounded-full bg-white text-gray-600 border border-gray-200 hover:border-brand-900 transition" data-target="summer-content">夏季 (Summer)</button>
+                <button class="season-tab px-5 py-2.5 rounded-full bg-white text-gray-600 border border-gray-200 hover:border-brand-900 transition" data-target="autumn-content">秋季 (Autumn)</button>
+                <button class="season-tab px-5 py-2.5 rounded-full bg-white text-gray-600 border border-gray-200 hover:border-brand-900 transition" data-target="winter-content">冬季 (Winter)</button>
+            </div>
+
+            <!-- Tab Content 1: Spring -->
+            <div id="spring-content" class="season-tab-content grid md:grid-cols-3 gap-6 text-xs">
+                <div class="bg-white p-6 rounded-2xl border border-brand-100 space-y-3 shadow-sm">
+                    <span class="px-2.5 py-0.5 rounded bg-amber-100 text-amber-800 font-bold">Bright Spring</span>
+                    <h3 class="font-bold text-brand-900 text-base">亮春型</h3>
+                    <p class="text-gray-600 leading-relaxed">五官對比鮮明、眼神清亮。適合極高飽和度與明亮感色彩，如珊瑚橘、亮金黃與嫩草綠。</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-brand-100 space-y-3 shadow-sm">
+                    <span class="px-2.5 py-0.5 rounded bg-amber-100 text-amber-800 font-bold">Light Spring</span>
+                    <h3 class="font-bold text-brand-900 text-base">淺春型</h3>
+                    <p class="text-gray-600 leading-relaxed">膚色白皙透亮帶奶油感。適合清輕薄馬卡龍暖色調、蜜桃粉與淡黃色。</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-brand-100 space-y-3 shadow-sm">
+                    <span class="px-2.5 py-0.5 rounded bg-amber-100 text-amber-800 font-bold">Warm Spring</span>
+                    <h3 class="font-bold text-brand-900 text-base">暖春型</h3>
+                    <p class="text-gray-600 leading-relaxed">標誌性暖金金色底調。適合溫暖活潑色彩，如陽光橙、水蜜桃粉與暖黃色。</p>
+                </div>
+            </div>
+
+            <!-- Tab Content 2: Summer -->
+            <div id="summer-content" class="season-tab-content hidden grid md:grid-cols-3 gap-6 text-xs">
+                <div class="bg-white p-6 rounded-2xl border border-brand-100 space-y-3 shadow-sm">
+                    <span class="px-2.5 py-0.5 rounded bg-blue-100 text-blue-800 font-bold">Light Summer</span>
+                    <h3 class="font-bold text-brand-900 text-base">淺夏型</h3>
+                    <p class="text-gray-600 leading-relaxed">膚色通透帶細緻粉冷感。適合冰天藍、淡紫羅蘭與柔粉色系。</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-brand-100 space-y-3 shadow-sm">
+                    <span class="px-2.5 py-0.5 rounded bg-blue-100 text-blue-800 font-bold">Soft Summer</span>
+                    <h3 class="font-bold text-brand-900 text-base">柔夏型</h3>
+                    <p class="text-gray-600 leading-relaxed">帶有莫蘭迪灰色調的高級質感。適合低飽和度的霧灰藍、乾燥玫瑰與煙燻粉。</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-brand-100 space-y-3 shadow-sm">
+                    <span class="px-2.5 py-0.5 rounded bg-blue-100 text-blue-800 font-bold">Cool Summer</span>
+                    <h3 class="font-bold text-brand-900 text-base">冷夏型</h3>
+                    <p class="text-gray-600 leading-relaxed">純粹冷青光澤膚質。適合海軍藍、微光藍綠與灰紫色系。</p>
+                </div>
+            </div>
+
+            <!-- Tab Content 3: Autumn -->
+            <div id="autumn-content" class="season-tab-content hidden grid md:grid-cols-3 gap-6 text-xs">
+                <div class="bg-white p-6 rounded-2xl border border-brand-100 space-y-3 shadow-sm">
+                    <span class="px-2.5 py-0.5 rounded bg-orange-100 text-orange-800 font-bold">Soft Autumn</span>
+                    <h3 class="font-bold text-brand-900 text-base">柔秋型</h3>
+                    <p class="text-gray-600 leading-relaxed">溫柔沉靜的燕麥質感。適合陶土粉、奶茶棕與溫潤暖灰綠。</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-brand-100 space-y-3 shadow-sm">
+                    <span class="px-2.5 py-0.5 rounded bg-orange-100 text-orange-800 font-bold">Warm Autumn</span>
+                    <h3 class="font-bold text-brand-900 text-base">暖秋型</h3>
+                    <p class="text-gray-600 leading-relaxed">典雅濃郁的暖金底調。適合楓葉紅、芥末黃與深焦糖棕。</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-brand-100 space-y-3 shadow-sm">
+                    <span class="px-2.5 py-0.5 rounded bg-orange-100 text-orange-800 font-bold">Deep Autumn</span>
+                    <h3 class="font-bold text-brand-900 text-base">深秋型</h3>
+                    <p class="text-gray-600 leading-relaxed">深邃大氣有氣場。適合酒紅、墨綠、富貴古銅金與焦糖色。</p>
+                </div>
+            </div>
+
+            <!-- Tab Content 4: Winter -->
+            <div id="winter-content" class="season-tab-content hidden grid md:grid-cols-3 gap-6 text-xs">
+                <div class="bg-white p-6 rounded-2xl border border-brand-100 space-y-3 shadow-sm">
+                    <span class="px-2.5 py-0.5 rounded bg-purple-100 text-purple-800 font-bold">Bright Winter</span>
+                    <h3 class="font-bold text-brand-900 text-base">亮冬型</h3>
+                    <p class="text-gray-600 leading-relaxed">極高對比度、瞳孔閃耀。適合高飽和寶藍、寶石紅與經典黑白對比。</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-brand-100 space-y-3 shadow-sm">
+                    <span class="px-2.5 py-0.5 rounded bg-purple-100 text-purple-800 font-bold">Cool Winter</span>
+                    <h3 class="font-bold text-brand-900 text-base">冷冬型</h3>
+                    <p class="text-gray-600 leading-relaxed">冷白肌膚與深髮對比。適合冰晶藍、皇家紫與鑽石亮白。</p>
+                </div>
+                <div class="bg-white p-6 rounded-2xl border border-brand-100 space-y-3 shadow-sm">
+                    <span class="px-2.5 py-0.5 rounded bg-purple-100 text-purple-800 font-bold">Deep Winter</span>
+                    <h3 class="font-bold text-brand-900 text-base">深冬型</h3>
+                    <p class="text-gray-600 leading-relaxed">冷峻深邃的氣場。適合純黑、暗夜藍、深紫紅與炭灰系。</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ai-consultant" class="py-16 bg-white border-t border-brand-100">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                <div class="text-center max-w-2xl mx-auto">
+                    <span class="text-xs font-bold tracking-widest text-brand-accent uppercase">AI Beauty & Fashion Consultant</span>
+                    <h2 class="text-3xl font-serif-title font-bold text-brand-900 mt-1">Gemini AI 美妝與服飾造型顧問</h2>
+                    <p class="text-gray-600 text-xs sm:text-sm mt-1">結合您的個人色彩、身材體型與命定色號，隨時向 AI 請教服飾剪裁、唇彩選擇與日常穿搭。</p>
+                </div>
+
+                <div class="bg-brand-50/70 rounded-2xl border border-brand-200 overflow-hidden shadow-sm flex flex-col h-[520px]">
+                    <!-- Chat Box -->
+                    <div id="chat-box" class="flex-grow p-6 overflow-y-auto space-y-4 custom-scrollbar text-xs sm:text-sm">
+                        <div class="flex items-start space-x-3">
+                            <div class="w-8 h-8 rounded-full bg-brand-900 text-white flex-shrink-0 flex items-center justify-center text-xs">AI</div>
+                            <div class="bg-white p-4 rounded-2xl rounded-tl-none shadow-sm border border-brand-100 text-gray-700 max-w-xl leading-relaxed">
+                                您好！我是 Color Science Lab 的 AI 造型美妝顧問。請先在上方完成「照片色彩檢定」與「身材體型檢定」，我就能為您提供專屬的服飾穿搭公式、命定唇膏色號與妝容風格建議喔！
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Chat Input Bar -->
+                    <div class="p-4 bg-white border-t border-gray-100 flex items-center space-x-3">
+                        <input type="text" id="chat-input" placeholder="詢問 AI 關於您的命定服飾穿搭、唇彩、髮色或顯瘦建議..." class="flex-grow px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:border-brand-accent text-xs sm:text-sm">
+                        <button id="btn-send-chat" class="px-6 py-3 rounded-xl bg-brand-900 text-white font-medium hover:bg-brand-accent transition text-xs sm:text-sm flex-shrink-0">
+                            發送 <i class="fa-solid fa-paper-plane ml-1"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="email-modal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 transition-opacity">
+        <div class="bg-white rounded-2xl max-w-md w-full p-6 shadow-2xl border border-brand-100 space-y-5">
+            <div class="flex justify-between items-center border-b border-gray-100 pb-3">
+                <div class="flex items-center space-x-2.5">
+                    <div class="w-9 h-9 rounded-full bg-brand-100 text-brand-900 flex items-center justify-center text-sm font-bold">
+                        <i class="fa-solid fa-paper-plane text-brand-accent"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-brand-900 text-base">寄送個人色彩與身材診斷報告</h3>
+                        <p class="text-[11px] text-gray-400">Color Science Lab 專屬美妝簡報</p>
+                    </div>
+                </div>
+                <button id="btn-close-email-modal" class="text-gray-400 hover:text-brand-900 text-lg transition">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <div class="space-y-3 text-xs text-gray-600">
+                <p>請輸入您的 Email，系統將為您生成包含<b>命定穿搭服飾</b>與<b>粉底色號</b>的專屬診斷簡報。</p>
+                <div class="p-3.5 rounded-xl bg-brand-50 border border-brand-100 space-y-1">
+                    <p class="font-bold text-brand-900 flex items-center" id="email-preview-season">
+                        <i class="fa-solid fa-square-check text-emerald-600 mr-1.5"></i> 診斷結果：尚未完成檢定
+                    </p>
+                    <p class="text-[11px] text-gray-500" id="email-preview-shade">包含適配粉底色號、體型服飾建議與色彩指南</p>
+                </div>
+            </div>
+
+            <form id="email-form" class="space-y-4">
+                <div>
+                    <label for="user-email-input" class="block text-xs font-semibold text-brand-900 mb-1">接收報告的電子信箱 (Email)</label>
+                    <input type="email" id="user-email-input" required placeholder="yourname@example.com" class="w-full px-4 py-3 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:border-brand-accent text-xs sm:text-sm">
+                </div>
+
+                <div class="space-y-2 pt-1">
+                    <button type="submit" id="btn-send-email-submit" class="w-full py-3.5 rounded-xl bg-brand-900 text-white hover:bg-brand-accent font-bold text-xs transition shadow flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>確認寄送 / 生成診斷簡報</span>
+                    </button>
+
+                    <div id="email-success-actions" class="hidden space-y-2 pt-2 border-t border-gray-100">
+                        <div class="p-3 bg-emerald-50 rounded-xl border border-emerald-200 text-[11px] text-emerald-800 flex items-center space-x-2">
+                            <i class="fa-solid fa-circle-check text-emerald-600 text-sm flex-shrink-0"></i>
+                            <span>簡報已完成處理！您可選擇下方方式發送或查看：</span>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2">
+                            <button type="button" id="btn-open-gmail" class="py-2.5 rounded-xl bg-red-50 text-red-700 hover:bg-red-100 font-semibold text-xs transition flex items-center justify-center border border-red-200">
+                                <i class="fa-brands fa-google mr-1.5"></i> 開啟 Gmail 寄送
+                            </button>
+                            <button type="button" id="btn-open-outlook" class="py-2.5 rounded-xl bg-sky-50 text-sky-700 hover:bg-sky-100 font-semibold text-xs transition flex items-center justify-center border border-sky-200">
+                                <i class="fa-brands fa-microsoft mr-1.5"></i> 開啟 Outlook
+                            </button>
+                        </div>
+                    </div>
+
+                    <button type="button" id="btn-copy-email-text" class="w-full py-2.5 rounded-xl border border-brand-200 text-brand-900 hover:bg-brand-50 font-semibold text-xs transition flex items-center justify-center">
+                        <i class="fa-solid fa-copy mr-1.5 text-brand-accent"></i> 複製診斷簡報全文內容
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <footer class="bg-brand-900 text-white py-12 border-t border-brand-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-8">
+            <div class="space-y-3 md:col-span-2">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 rounded-full bg-brand-accent flex items-center justify-center font-bold text-white font-serif-title">CS</div>
+                    <span class="font-serif-title text-xl font-bold tracking-wide">COLOR SCIENCE LAB</span>
+                </div>
+                <p class="text-xs text-brand-100 max-w-md leading-relaxed">
+                    整合大眾色號精準匹配、油肌/乾肌光效適應與光學色彩檢定，為個人與品牌提供最權威的亞洲個人色彩與體型診斷方案。
+                </p>
+                <p class="text-[11px] text-gray-500 pt-2">
+                    Certifications: JPCA 日本個人色彩學研究邏輯 · ISO 22716 美妝品質規範
+                </p>
+            </div>
+
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-accent mb-3">快速連結</h4>
+                <ul class="space-y-2 text-xs text-gray-300">
+                    <li><a href="#lab-section" class="hover:text-white transition">線上色彩檢定</a></li>
+                    <li><a href="#body-shape-section" class="hover:text-white transition">身材與體型檢定</a></li>
+                    <li><a href="#shades-section" class="hover:text-white transition">亞洲大眾色號</a></li>
+                    <li><a href="#guide-section" class="hover:text-white transition">四季十二型分析</a></li>
+                    <li><a href="#ai-consultant" class="hover:text-white transition">Gemini AI 美妝顧問</a></li>
+                </ul>
+            </div>
+
+            <div>
+                <h4 class="text-xs font-bold uppercase tracking-wider text-brand-accent mb-3">隱私與安全聲明</h4>
+                <p class="text-xs text-gray-400 leading-relaxed">
+                    您所上傳的照片僅在您的瀏覽器本機內進行 Canvas 像素擷取與分析，不會儲存於任何遠端伺服器。
+                </p>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 pt-6 border-t border-brand-800 text-center text-xs text-gray-500">
+            &copy; 2026 Color Science Lab. All rights reserved.
+        </div>
+    </footer>
+
+    <script>
+        // Color Hex Name Mapping Dictionary
+        const COLOR_HEX_MAP = {
+            '#FF6F61': '活力珊瑚橘', '#FFBF00': '暖陽琥珀金', '#00A86B': '翡翠鮮綠', '#FF7F50': '亮暖蜜桃橙',
+            '#E0115F': '鮮豔寶石紅', '#FFD700': '璀璨明黃', '#E07A5F': '暖陶土橘', '#F4A261': '香檳杏橙',
+            '#36454F': '深炭灰', '#708090': '霧藍灰', '#500000': '深紅棕', '#FFB7B2': '淡蜜桃粉',
+            '#E2F0CB': '清爽嫩芽綠', '#FFDAC1': '奶油裸杏', '#FFB6C1': '淺奶油粉', '#FFF275': '檸檬淡黃',
+            '#E9C46A': '暖燕麥金', '#000000': '曜石極黑', '#2C3539': '深墨灰', '#8B0000': '深酒紅',
+            '#CD853F': '焦糖奶茶棕', '#8B8C7A': '鼠尾草灰綠', '#BC8F8F': '煙燻乾燥玫瑰', '#C0392B': '復古楓葉紅',
+            '#D35400': '深暖南瓜橙', '#9A7D0A': '暗芥末黃', '#0000FF': '純寶藍', '#FF00FF': '亮紫紅',
+            '#00FFFF': '亮青藍', '#D2691E': '肉桂焦糖棕', '#2F4F4F': '墨綠灰', '#800000': '經典勃艮第紅',
+            '#B8860B': '典雅復古金', '#7E5109': '深大地棕', '#900C3F': '深漿果紫紅', '#E0FEFE': '冰晶淺藍',
+            '#D8BFD8': '柔紫羅蘭', '#FBCEB1': '杏仁奶油', '#4682B4': '霧靜謐藍', '#4B0082': '靛藍紫',
+            '#556B2F': '深橄欖綠', '#DAA520': '暖葵花金', '#87CEEB': '天晴淺藍', '#DB7093': '莫蘭迪玫瑰粉',
+            '#B0C4DE': '冰霧天藍', '#E6E6FA': '淡雅薰衣草紫', '#C71585': '覆盆子紫紅', '#FF4500': '亮朱紅',
+            '#581845': '深紫墨', '#006400': '深森林綠', '#00008B': '海軍皇家藍', '#DC143C': '冷寶石紅',
+            '#800020': '深濃酒紅', '#CA6F1E': '暖陶橘', '#191970': '深夜藍', '#FFFFFF': '純鑽石白',
+            '#FF8C00': '鮮濃橘', '#8B008B': '高雅深紫'
+        };
+
+        function getColorNameFromHex(hex) {
+            if (!hex) return "命定質感色";
+            const upper = hex.toUpperCase();
+            return COLOR_HEX_MAP[upper] || upper;
+        }
+
+        // Global State Variables
+        let currentImage = null;
+        let uploadedUserImageBase64 = null;
+        let sampledColors = { skin: null, lip: null, hair: null };
+        let activeTarget = 'skin';
+        let currentDiagnosis = null;
+        let currentBodyDiagnosis = {
+            typeKey: 'pear',
+            typeName: '梨型 / 波浪型 (Pear / Wave)',
+            tag: '特徵：上身纖細 · 下身曲線豐富',
+            desc: '臀部與大腿線條圓潤豐滿，腰線明顯。視覺重心偏下，極適合強調腰身並順流遮飾下半身曲線的服飾設計。',
+            dos: ['高腰 A 字裙、傘裙、垂墜感寬褲', '方領、一字領、領口帶有設計感的上衣', '明確收腰的連身裙與高腰腰帶'],
+            donts: ['低腰褲、大腿緊繃的貼身淺色窄管褲', '橫向大條紋褲款或繁複口袋長褲', '完全無腰身的袋狀罩衫'],
+            makeupStyle: '風格柔美優雅。適合清透水光底妝、溫柔玫瑰色腮紅與潤澤唇膏，呈現極具親和力的名媛氣氛。',
+            height: 162, weight: 52, bodyFat: 24, bmiText: 'BMI: 19.8 (標準)', heightFrameAdvice: '標準身形 (162cm)：可多運用同色系連貫穿搭 (Monochrome) 或短版上衣搭配高腰下身。'
+        };
+
+        // DOM Element References
+        const photoInput = document.getElementById('photo-input');
+        const dropzone = document.getElementById('dropzone');
+        const canvasContainer = document.getElementById('canvas-container');
+        const photoCanvas = document.getElementById('photo-canvas');
+        const ctx = photoCanvas ? photoCanvas.getContext('2d', { willReadFrequently: true }) : null;
+        const imageStatusBadge = document.getElementById('image-status-badge');
+
+        const btnAutoSample = document.getElementById('btn-auto-sample');
+        const btnResetCalibration = document.getElementById('btn-reset-calibration');
+        const sliderTemp = document.getElementById('slider-temp');
+        const sliderBright = document.getElementById('slider-bright');
+        const tempVal = document.getElementById('temp-val');
+        const brightVal = document.getElementById('bright-val');
+
+        const swatchSkin = document.getElementById('swatch-skin');
+        const hexSkin = document.getElementById('hex-skin');
+        const swatchLip = document.getElementById('swatch-lip');
+        const hexLip = document.getElementById('hex-lip');
+        const setTargetLip = document.getElementById('set-target-lip');
+        const swatchHair = document.getElementById('swatch-hair');
+        const hexHair = document.getElementById('hex-hair');
+        const setTargetHair = document.getElementById('set-target-hair');
+
+        const btnAnalyze = document.getElementById('btn-analyze');
+
+        const seasonTabs = document.querySelectorAll('.season-tab');
+        const seasonTabContents = document.querySelectorAll('.season-tab-content');
+
+        seasonTabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const targetId = tab.getAttribute('data-target');
+                seasonTabs.forEach(t => {
+                    t.classList.remove('bg-brand-900', 'text-white');
+                    t.classList.add('bg-white', 'text-gray-600', 'border', 'border-gray-200');
+                });
+                tab.classList.add('bg-brand-900', 'text-white');
+                tab.classList.remove('bg-white', 'text-gray-600', 'border', 'border-gray-200');
+
+                seasonTabContents.forEach(content => {
+                    if (content.id === targetId) {
+                        content.classList.remove('hidden');
+                    } else {
+                        content.classList.add('hidden');
+                    }
+                });
+            });
+        });
+
+        if (photoInput) {
+            photoInput.addEventListener('change', (e) => {
+                const file = e.target.files[0];
+                if (file) loadImageFile(file);
+            });
+        }
+
+        if (dropzone) {
+            dropzone.addEventListener('dragover', (e) => {
+                e.preventDefault();
+                dropzone.classList.add('border-brand-accent', 'bg-brand-100/50');
+            });
+            dropzone.addEventListener('dragleave', () => {
+                dropzone.classList.remove('border-brand-accent', 'bg-brand-100/50');
+            });
+            dropzone.addEventListener('drop', (e) => {
+                e.preventDefault();
+                dropzone.classList.remove('border-brand-accent', 'bg-brand-100/50');
+                if (e.dataTransfer.files && e.dataTransfer.files[0]) {
+                    loadImageFile(e.dataTransfer.files[0]);
+                }
+            });
+        }
+
+        function loadImageFile(file) {
+            if (!file.type.startsWith('image/')) {
+                showToast('請上傳有效的圖檔格式 (JPG, PNG, WEBP)');
+                return;
+            }
+            const reader = new FileReader();
+            reader.onload = (evt) => {
+                uploadedUserImageBase64 = evt.target.result;
+                const img = new Image();
+                img.onload = () => {
+                    currentImage = img;
+                    if (canvasContainer) canvasContainer.classList.remove('hidden');
+                    if (imageStatusBadge) {
+                        imageStatusBadge.innerText = '照片已載入';
+                        imageStatusBadge.className = 'px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 font-medium';
+                    }
+                    drawCanvasImage();
+                    autoSampleSkinColor();
+                };
+                img.src = evt.target.result;
+            };
+            reader.readAsDataURL(file);
+        }
+
+        function drawCanvasImage() {
+            if (!currentImage || !ctx || !photoCanvas) return;
+            const temp = parseInt(sliderTemp ? sliderTemp.value : 0) || 0;
+            const bright = parseInt(sliderBright ? sliderBright.value : 0) || 0;
+
+            photoCanvas.width = currentImage.width;
+            photoCanvas.height = currentImage.height;
+
+            ctx.clearRect(0, 0, photoCanvas.width, photoCanvas.height);
+            ctx.drawImage(currentImage, 0, 0);
+
+            if (temp !== 0 || bright !== 0) {
+                const imgData = ctx.getImageData(0, 0, photoCanvas.width, photoCanvas.height);
+                const data = imgData.data;
+
+                for (let i = 0; i < data.length; i += 4) {
+                    data[i] = Math.min(255, Math.max(0, data[i] + temp));
+                    data[i + 2] = Math.min(255, Math.max(0, data[i + 2] - temp));
+                    data[i] = Math.min(255, Math.max(0, data[i] + bright));
+                    data[i + 1] = Math.min(255, Math.max(0, data[i + 1] + bright));
+                    data[i + 2] = Math.min(255, Math.max(0, data[i + 2] + bright));
+                }
+                ctx.putImageData(imgData, 0, 0);
+            }
+        }
+
+        if (sliderTemp) {
+            sliderTemp.addEventListener('input', () => {
+                if (tempVal) tempVal.innerText = sliderTemp.value;
+                drawCanvasImage();
+            });
+        }
+
+        if (sliderBright) {
+            sliderBright.addEventListener('input', () => {
+                if (brightVal) brightVal.innerText = sliderBright.value;
+                drawCanvasImage();
+            });
+        }
+
+        if (btnResetCalibration) {
+            btnResetCalibration.addEventListener('click', () => {
+                if (sliderTemp) sliderTemp.value = 0;
+                if (sliderBright) sliderBright.value = 0;
+                if (tempVal) tempVal.innerText = "0";
+                if (brightVal) brightVal.innerText = "0";
+                drawCanvasImage();
+            });
+        }
+
+        if (setTargetLip) {
+            setTargetLip.addEventListener('click', () => {
+                activeTarget = 'lip';
+                showToast('請點擊照片上的嘴唇位置採樣');
+            });
+        }
+
+        if (setTargetHair) {
+            setTargetHair.addEventListener('click', () => {
+                activeTarget = 'hair';
+                showToast('請點擊照片上的髮色或瞳孔位置採樣');
+            });
+        }
+
+        if (photoCanvas) {
+            photoCanvas.addEventListener('click', (e) => {
+                if (!currentImage || !ctx) return;
+                const rect = photoCanvas.getBoundingClientRect();
+                const scaleX = photoCanvas.width / rect.width;
+                const scaleY = photoCanvas.height / rect.height;
+
+                const x = Math.floor((e.clientX - rect.left) * scaleX);
+                const y = Math.floor((e.clientY - rect.top) * scaleY);
+
+                const rgb = getAverageRgb(x, y, 5);
+                updateSampledColor(activeTarget, rgb);
+                activeTarget = 'skin';
+            });
+        }
+
+        if (btnAutoSample) {
+            btnAutoSample.addEventListener('click', () => {
+                autoSampleSkinColor();
+            });
+        }
+
+        function autoSampleSkinColor() {
+            if (!currentImage || !ctx || !photoCanvas) return;
+            const centerX = Math.floor(photoCanvas.width * 0.5);
+            const centerY = Math.floor(photoCanvas.height * 0.42);
+            const sampleRadius = Math.max(10, Math.floor(photoCanvas.width * 0.05));
+
+            const rgb = getAverageRgb(centerX, centerY, sampleRadius);
+            updateSampledColor('skin', rgb);
+            showToast('已完成 AI 智慧膚色自動採樣！');
+        }
+
+        function getAverageRgb(startX, startY, radius) {
+            const width = photoCanvas.width;
+            const height = photoCanvas.height;
+
+            const x1 = Math.max(0, startX - Math.floor(radius / 2));
+            const y1 = Math.max(0, startY - Math.floor(radius / 2));
+            const w = Math.min(width - x1, radius);
+            const h = Math.min(height - y1, radius);
+
+            const imgData = ctx.getImageData(x1, y1, w, h);
+            const data = imgData.data;
+
+            let r = 0, g = 0, b = 0, count = 0;
+            for (let i = 0; i < data.length; i += 4) {
+                r += data[i];
+                g += data[i + 1];
+                b += data[i + 2];
+                count++;
+            }
+
+            return {
+                r: Math.round(r / (count || 1)),
+                g: Math.round(g / (count || 1)),
+                b: Math.round(b / (count || 1))
+            };
+        }
+
+        function updateSampledColor(target, rgb) {
+            const hex = rgbToHex(rgb.r, rgb.g, rgb.b);
+            sampledColors[target] = { ...rgb, hex };
+
+            if (target === 'skin') {
+                if (swatchSkin) {
+                    swatchSkin.style.backgroundColor = hex;
+                    swatchSkin.innerText = '';
+                }
+                if (hexSkin) hexSkin.innerText = `${hex.toUpperCase()} (RGB: ${rgb.r}, ${rgb.g}, ${rgb.b})`;
+
+                if (btnAnalyze) {
+                    btnAnalyze.disabled = false;
+                    btnAnalyze.className = 'w-full py-4 rounded-xl bg-brand-900 hover:bg-brand-accent text-white font-bold text-sm tracking-wider uppercase transition shadow-lg duration-200 cursor-pointer';
+                }
+            } else if (target === 'lip') {
+                if (swatchLip) {
+                    swatchLip.style.backgroundColor = hex;
+                    swatchLip.innerText = '';
+                }
+                if (hexLip) hexLip.innerText = `${hex.toUpperCase()}`;
+            } else if (target === 'hair') {
+                if (swatchHair) {
+                    swatchHair.style.backgroundColor = hex;
+                    swatchHair.innerText = '';
+                }
+                if (hexHair) hexHair.innerText = `${hex.toUpperCase()}`;
+            }
+        }
+
+        if (btnAnalyze) {
+            btnAnalyze.addEventListener('click', () => {
+                if (!sampledColors.skin) {
+                    showToast('請先進行膚色採樣');
+                    return;
+                }
+
+                const skin = sampledColors.skin;
+                const hsl = rgbToHsl(skin.r, skin.g, skin.b);
+
+                const rbDiff = skin.r - skin.b;
+                const isWarm = rbDiff > 32 && hsl.h >= 20 && hsl.h <= 50;
+
+                const L = hsl.l;
+                const S = hsl.s;
+
+                let seasonName = '';
+                let seasonDesc = '';
+                let shadeCode = '';
+                let foundationTexture = '';
+                let sunscreenTip = '';
+                let bestColors = [];
+                let makeupColors = [];
+                let avoidColors = [];
+                let jewelryText = '';
+
+                if (isWarm) {
+                    if (L > 65) {
+                        if (S > 50) {
+                            seasonName = '亮春型 (Bright Spring)';
+                            seasonDesc = '您的膚色擁有燦爛的暖金光明感，五官對比鮮明。適合清澈、高飽和度的暖暖鮮豔色彩，展現極高朝氣。';
+                            shadeCode = '13N / 21N (暖白)';
+                            bestColors = ['#FF6F61', '#FFBF00', '#00A86B', '#FF7F50', '#E0115F', '#FFD700'];
+                            makeupColors = ['#FF6F61', '#E07A5F', '#F4A261'];
+                            avoidColors = ['#36454F', '#708090', '#500000'];
+                        } else {
+                            seasonName = '淺春型 (Light Spring)';
+                            seasonDesc = '您的膚色白皙柔和，自帶粉嫩奶油感。適合輕盈柔和的馬卡龍暖色調、蜜桃粉與奶油黃。';
+                            shadeCode = '13N / 21N (極白暖)';
+                            bestColors = ['#FFB7B2', '#E2F0CB', '#FFDAC1', '#FFB6C1', '#FFF275'];
+                            makeupColors = ['#FFB7B2', '#E9C46A', '#F4A261'];
+                            avoidColors = ['#000000', '#2C3539', '#8B0000'];
+                        }
+                        foundationTexture = '清透水光肌 / 亮采裸妝底妝';
+                        sunscreenTip = '建議選擇蜜桃色妝前乳校正不均勻膚色';
+                        jewelryText = '強烈推薦黃金 (Yellow Gold)、香檳金與亮珍珠，襯托肌膚晶透質感。';
+                    } else if (L < 45) {
+                        if (S < 40) {
+                            seasonName = '柔秋型 (Soft Autumn)';
+                            seasonDesc = '您的膚色自帶優雅朦朧氣息。非常適合低飽和度的燕麥色、奶茶棕與陶土粉。';
+                            shadeCode = '21N / 23N (自然中性)';
+                            bestColors = ['#CD853F', '#8B8C7A', '#E9C46A', '#BC8F8F', '#8B0000'];
+                            makeupColors = ['#C0392B', '#D35400', '#9A7D0A'];
+                            avoidColors = ['#0000FF', '#FF00FF', '#00FFFF'];
+                        } else {
+                            seasonName = '深秋型 (Deep Autumn)';
+                            seasonDesc = '您的膚色濃郁大質，沉穩高貴。適合焦糖棕、酒紅、深橄欖綠與富貴古銅金。';
+                            shadeCode = '23W / 25N (健康象牙)';
+                            bestColors = ['#8B0000', '#D2691E', '#2F4F4F', '#800000', '#B8860B'];
+                            makeupColors = ['#7E5109', '#900C3F', '#C0392B'];
+                            avoidColors = ['#FFB6C1', '#E0FEFE', '#D8BFD8'];
+                        }
+                        foundationTexture = '高級絲絨霧光肌 / 奶油遮瑕粉底';
+                        sunscreenTip = '選擇自然裸色飾底乳，勻亮膚色光澤';
+                        jewelryText = '首選古銅金 (Bronze)、黃銅色與暖琥珀飾品。';
+                    } else {
+                        if (S > 55) {
+                            seasonName = '暖春型 (Warm Spring)';
+                            seasonDesc = '您的膚色具備標誌性的暖金色基底。適合純正暖色，如陽光橘、亮紅、金黃色。';
+                            shadeCode = '21N / 21W';
+                            bestColors = ['#FF7F50', '#E0115F', '#FFD700', '#FBCEB1', '#00A86B'];
+                            makeupColors = ['#FF6F61', '#E07A5F', '#F4A261'];
+                            avoidColors = ['#708090', '#4682B4', '#4B0082'];
+                        } else {
+                            seasonName = '暖秋型 (Warm Autumn)';
+                            seasonDesc = '您的膚色帶有典雅溫暖的金色底調。適合楓葉紅、芥末黃、焦糖棕與大地色彩。';
+                            shadeCode = '23N / 23W';
+                            bestColors = ['#D2691E', '#B8860B', '#556B2F', '#CD853F', '#DAA520'];
+                            makeupColors = ['#C0392B', '#D35400', '#7E5109'];
+                            avoidColors = ['#E0FEFE', '#FFB6C1', '#87CEEB'];
+                        }
+                        foundationTexture = '微光澤半霧面肌 / 水感提亮粉底';
+                        sunscreenTip = '選用黃色飾底乳校正暗沉泛黃';
+                        jewelryText = '推薦黃金與溫暖K金飾品，極致映襯暖甜氣質。';
+                    }
+                } else {
+                    if (L > 65) {
+                        if (S < 35) {
+                            seasonName = '柔夏型 (Soft Summer)';
+                            seasonDesc = '您的膚色基底帶有細緻粉冷青調，呈朦朧高級灰。適合低飽和度的莫蘭迪配色。';
+                            shadeCode = '21C / 21N (粉冷色調)';
+                            bestColors = ['#708090', '#DB7093', '#BC8F8F', '#B0C4DE', '#E6E6FA'];
+                            makeupColors = ['#DB7093', '#C71585', '#BC8F8F'];
+                            avoidColors = ['#FF4500', '#FFD700', '#D2691E'];
+                        } else {
+                            seasonName = '淺夏型 (Light Summer)';
+                            seasonDesc = '您的膚色冰清玉潔、通透白皙。非常適合淺粉紫、嬰兒藍與薄荷冰晶色彩。';
+                            shadeCode = '13C / 21C (粉白)';
+                            bestColors = ['#B0C4DE', '#E6E6FA', '#FFB6C1', '#DB7093', '#87CEEB'];
+                            makeupColors = ['#DB7093', '#C71585', '#E6E6FA'];
+                            avoidColors = ['#8B0000', '#D2691E', '#556B2F'];
+                        }
+                        foundationTexture = '水光陶瓷肌 / 奶油遮瑕粉底';
+                        sunscreenTip = '選用紫色或粉紫飾底乳校正黃氣';
+                        jewelryText = '推薦冷光銀飾 (Silver)、白金 (Platinum) 與玫瑰金。';
+                    } else if (L < 45) {
+                        if (S > 50) {
+                            seasonName = '深冬型 (Deep Winter)';
+                            seasonDesc = '您的五官輪廓鮮明深邃，帶有酷帥氣場。適合純黑、酒紅、暗夜藍與炭灰系。';
+                            shadeCode = '23C / 25N (冷黑白)';
+                            bestColors = ['#000000', '#581845', '#006400', '#00008B', '#DC143C'];
+                            makeupColors = ['#900C3F', '#581845', '#800020'];
+                            avoidColors = ['#F4A261', '#E9C46A', '#CA6F1E'];
+                        } else {
+                            seasonName = '冷冬型 (Cool Winter)';
+                            seasonDesc = '您的膚色呈現經典冷白感。適合皇家藍、冰清粉、冷紫與鑽石白光澤。';
+                            shadeCode = '21C / 23C';
+                            bestColors = ['#191970', '#900C3F', '#4B0082', '#FFFFFF', '#DC143C'];
+                            makeupColors = ['#900C3F', '#C70039', '#800020'];
+                            avoidColors = ['#FF8C00', '#D2691E', '#FFD700'];
+                        }
+                        foundationTexture = '極致霧面肌 / 冷白光澤肌';
+                        sunscreenTip = '選用綠色或透明飾底乳修飾局部泛紅';
+                        jewelryText = '首選鑽石、白金 (Platinum) 與純銀飾品。';
+                    } else {
+                        if (S > 55) {
+                            seasonName = '亮冬型 (Bright Winter)';
+                            seasonDesc = '您的膚色對比度極高，眼神清冽閃耀。適合高鮮豔寶石色、寶藍與純黑白經典對比。';
+                            shadeCode = '13C / 21C';
+                            bestColors = ['#00008B', '#8B008B', '#DC143C', '#000000', '#FFFFFF'];
+                            makeupColors = ['#C70039', '#900C3F', '#800020'];
+                            avoidColors = ['#D2691E', '#E9C46A', '#B8860B'];
+                        } else {
+                            seasonName = '冷夏型 (Cool Summer)';
+                            seasonDesc = '您的膚色帶有優雅細緻的冷青底調。非常適合灰藍、冷海軍藍、紫羅蘭色。';
+                            shadeCode = '21C / 21N';
+                            bestColors = ['#4682B4', '#C71585', '#D8BFD8', '#708090', '#DB7093'];
+                            makeupColors = ['#DB7093', '#C71585', '#BC8F8F'];
+                            avoidColors = ['#FF4500', '#FFD700', '#D2691E'];
+                        }
+                        foundationTexture = '微光澤半霧面肌 / 水感提亮';
+                        sunscreenTip = '選用紫色飾底乳修正局部暗沉';
+                        jewelryText = '推薦白金、純銀與光澤珍珠。';
+                    }
+                }
+
+                currentDiagnosis = {
+                    seasonName, seasonDesc, shadeCode, foundationTexture,
+                    sunscreenTip, isWarm, hsl, bestColors, makeupColors,
+                    avoidColors, jewelryText
+                };
+
+                renderDiagnosisUI();
+            });
+        }
+
+        function renderDiagnosisUI() {
+            if (!currentDiagnosis) return;
+            const d = currentDiagnosis;
+            const resultSec = document.getElementById('result-section');
+            if (resultSec) resultSec.classList.remove('hidden');
+
+            const seasonNameEl = document.getElementById('res-season-name');
+            const seasonDescEl = document.getElementById('res-season-desc');
+            const undertoneTagEl = document.getElementById('res-undertone-tag');
+            const shadeCodeEl = document.getElementById('res-shade-code');
+            const textureEl = document.getElementById('res-foundation-texture');
+            const sunscreenEl = document.getElementById('res-sunscreen-tip');
+            const jewelryEl = document.getElementById('res-jewelry-text');
+
+            if (seasonNameEl) seasonNameEl.innerText = d.seasonName;
+            if (seasonDescEl) seasonDescEl.innerText = d.seasonDesc;
+            if (undertoneTagEl) undertoneTagEl.innerText = d.isWarm ? '暖色調 (Warm Undertone)' : '冷色調 (Cool Undertone)';
+            if (shadeCodeEl) shadeCodeEl.innerText = d.shadeCode;
+            if (textureEl) textureEl.innerText = d.foundationTexture;
+            if (sunscreenEl) sunscreenEl.innerText = d.sunscreenTip;
+            if (jewelryEl) jewelryEl.innerText = d.jewelryText;
+
+            const previewSeason = document.getElementById('email-preview-season');
+            const previewShade = document.getElementById('email-preview-shade');
+            if (previewSeason) previewSeason.innerHTML = `<i class="fa-solid fa-square-check text-emerald-600 mr-1.5"></i> 診斷結果：${d.seasonName}`;
+            if (previewShade) previewShade.innerText = `推薦粉底色號：${d.shadeCode} (${d.isWarm ? '暖色底調' : '冷色底調'})`;
+
+            const tempValNum = d.isWarm ? 75 : 30;
+            const barTempFill = document.getElementById('bar-temp-fill');
+            const barTempText = document.getElementById('bar-temp-text');
+            if (barTempFill) barTempFill.style.width = `${tempValNum}%`;
+            if (barTempText) barTempText.innerText = d.isWarm ? `偏暖 ${tempValNum}%` : `偏冷 ${100 - tempValNum}%`;
+
+            const barLightFill = document.getElementById('bar-light-fill');
+            const barLightText = document.getElementById('bar-light-text');
+            if (barLightFill) barLightFill.style.width = `${d.hsl.l}%`;
+            if (barLightText) barLightText.innerText = `明度 ${d.hsl.l}%`;
+
+            const barChromaFill = document.getElementById('bar-chroma-fill');
+            const barChromaText = document.getElementById('bar-chroma-text');
+            if (barChromaFill) barChromaFill.style.width = `${d.hsl.s}%`;
+            if (barChromaText) barChromaText.innerText = `彩度 ${d.hsl.s}%`;
+
+            renderSwatches('palette-best', d.bestColors);
+            renderSwatches('palette-makeup', d.makeupColors);
+            renderSwatches('palette-avoid', d.avoidColors);
+
+            updateCombinedStyleCard();
+            if (resultSec) resultSec.scrollIntoView({ behavior: 'smooth' });
+
+            const bestNames = d.bestColors.map(hex => getColorNameFromHex(hex)).slice(0, 3).join('、');
+            appendAiMessage(`我已完成您的照片檢定囉！診斷結果為：<b>${d.seasonName}</b> (適配色號 ${d.shadeCode})。<br>您的命定色彩包含：<b>${bestNames}</b>。搭配您的體型（<b>${currentBodyDiagnosis ? currentBodyDiagnosis.typeName : '時尚體型'}</b>），請問想了解哪種場合的穿搭或彩妝搭配呢？`);
+        }
+
+        const btnDiagnoseBody = document.getElementById('btn-diagnose-body');
+        const inputHeight = document.getElementById('input-height');
+        const inputWeight = document.getElementById('input-weight');
+        const inputBodyfat = document.getElementById('input-bodyfat');
+        const selectShoulderHip = document.getElementById('select-shoulder-hip');
+        const selectWaistDef = document.getElementById('select-waist-definition');
+        const selectBoneFeature = document.getElementById('select-bone-feature');
+
+        if (btnDiagnoseBody) {
+            btnDiagnoseBody.addEventListener('click', () => {
+                calculateBodyType();
+            });
+        }
+
+        function calculateBodyType() {
+            const hVal = parseFloat(inputHeight ? inputHeight.value : '') || 0;
+            const wVal = parseFloat(inputWeight ? inputWeight.value : '') || 0;
+            const fatVal = parseFloat(inputBodyfat ? inputBodyfat.value : '') || 0;
+
+            let bmiText = "未輸入數據";
+            let heightFrameAdvice = "請輸入身高體重以獲取專屬縱向比例建議。";
+
+            if (hVal > 0 && wVal > 0) {
+                const bmi = (wVal / Math.pow(hVal / 100, 2)).toFixed(1);
+                let bmiCategory = "適中";
+                if (bmi < 18.5) bmiCategory = "偏瘦體型";
+                else if (bmi >= 24 && bmi < 27) bmiCategory = "過重/豐滿";
+                else if (bmi >= 27) bmiCategory = "圓潤豐滿";
+
+                bmiText = `BMI: ${bmi} (${bmiCategory})`;
+                if (fatVal > 0) {
+                    bmiText += ` · 體脂率: ${fatVal}%`;
+                }
+
+                if (hVal < 158) {
+                    heightFrameAdvice = `嬌小身形 (${hVal}cm)：建議選擇高腰線設計，褲長選九分褲或俐落短裙，上衣選擇小圖案或細條紋，避免過大印花壓低視覺重心。`;
+                } else if (hVal > 168) {
+                    heightFrameAdvice = `高挑身形 (${hVal}cm)：能完美駕馭長版風衣、大廓形外套與大圖案印花，推薦拖地落地寬褲或長褶裙，彰顯高級氣場。`;
+                } else {
+                    heightFrameAdvice = `標準身形 (${hVal}cm)：極具比例包容度，可多運用同色系連貫穿搭 (Monochrome) 或短版上衣搭配高腰下身，創造 3:7 黃金身材比例。`;
+                }
+            }
+
+            const sh = selectShoulderHip ? selectShoulderHip.value : 'balanced';
+            const waist = selectWaistDef ? selectWaistDef.value : 'defined';
+            const bone = selectBoneFeature ? selectBoneFeature.value : 'curvy';
+
+            let typeKey = 'pear';
+            let typeName = '';
+            let tag = '';
+            let desc = '';
+            let dos = [];
+            let donts = [];
+            let makeupStyle = '';
+
+            if (sh === 'hip-wider') {
+                typeKey = 'pear';
+                typeName = '梨型 / 波浪型 (Pear / Wave)';
+                tag = '特徵：上身纖細 · 下身曲線豐富';
+                desc = '臀部與大腿線條圓潤豐滿，腰線明顯。視覺重心偏下，極適合強調腰身並順流遮飾下半身曲線的服飾設計。';
+                dos = ['高腰 A 字裙、傘裙、垂墜感寬褲', '方領、一字領、領口帶有設計感的上衣', '明確收腰的連身裙與高腰腰帶'];
+                donts = ['低腰褲、大腿緊繃的貼身淺色窄管褲', '橫向大條紋褲款或繁複口袋長褲', '完全無腰身的袋狀罩衫'];
+                makeupStyle = '風格柔美優雅。適合清透水光底妝、溫柔玫瑰色腮紅與潤澤唇膏，呈現極具親和力的名媛氣氛。';
+            } else if (sh === 'shoulder-wider') {
+                typeKey = 'inverted-triangle';
+                typeName = '倒三角形 / 運動型 (Inverted Triangle)';
+                tag = '特徵：肩寬胸厚 · 臀腿纖細';
+                desc = '肩膀或胸廓較寬，腰臀線條較緊實纖細。適合拉長頸部線條、弱化肩膀寬度，並增加下半身份量感的穿搭風格。';
+                dos = ['深 V 領、U 領、斜肩上衣', '百褶裙、蓬蓬裙、荷葉邊下身', '質感垂墜的長褲或寬褲'];
+                donts = ['墊肩外套、泡泡袖、大船領上衣', '肩部有複雜印花或亮片裝飾', '上寬下緊且無領口延伸的組合'];
+                makeupStyle = '風格帥氣俐落、亮眼大方。適合精緻霧面妝容、俐落野生眉與高飽和唇彩，彰顯大氣時尚感。';
+            } else if (waist === 'full') {
+                typeKey = 'apple';
+                typeName = '蘋果型 / 直筒豐滿型 (Apple)';
+                tag = '特徵：腰腹豐滿 · 四肢纖細';
+                desc = '腰腹部相對肉感豐滿，但雙腿與手臂線條纖細優美。適合展現四肢優勢、拉長縱向比例的流暢服飾。';
+                dos = ['V 領垂墜罩衫、直筒連身裙', '高腰線 (Empire Waist) 服飾', '露出纖細手腕與雙腿的小 A 字裙'];
+                donts = ['腰部有大蝴蝶結或褶襠的款式', '緊身高腰包臀裙', '材質過於厚重硬挺的腰部抓褶'];
+                makeupStyle = '風格明亮有活力。適合聚焦於眼妝與立體修容，使用輕薄光澤底妝與立體腮紅打亮，轉移腰部視覺。';
+            } else if (waist === 'straight' || bone === 'bony') {
+                typeKey = 'rectangle';
+                typeName = '矩形 / 骨感天然型 (Rectangle / Natural)';
+                tag = '特徵：骨架挺拔 · 腰線縱向長';
+                desc = '肩腰臀寬度相近，肩膀與鎖骨線條好看。天然的時尚架子，極為適合隨性多層次、硬挺與寬鬆隨性的衣服版型。';
+                dos = ['多層次穿搭 (Layering)、長版風衣外套', '寬鬆工裝褲、直筒牛仔褲', '棉麻、粗花呢、皮革等具肌理感布料'];
+                donts = ['過於緊身黏膚的薄彈力衣物', '極度誇張收腰的古典束腹裙', '太過嬌柔繁複的小荷葉邊飾'];
+                makeupStyle = '風格隨性自然、進階高級感。適合微霧面底妝、大地色煙燻眼影與裸色/莫蘭迪系唇彩，打造高級冷淡風。';
+            } else {
+                typeKey = 'hourglass';
+                typeName = '沙漏型 / X 型 (Hourglass)';
+                tag = '特徵：胸臀豐滿 · 腰身纖細';
+                desc = '肩圍與臀圍平衡，腰部曲線極為顯著。天生完美曲線，最適合能忠實貼合完美 S 曲線的合身服飾。';
+                dos = ['裹身裙 (Wrap Dress)、緊身針織衫', '高腰鉛筆裙、合身西裝外套', 'V 領、心形領等展現胸腰線條的剪裁'];
+                donts = ['過於蓬松直筒的無廓形罩衫', '遮蓋腰身的厚重硬挺箱型外套', '高領配超大蓬蓬裙（易顯笨重）'];
+                makeupStyle = '風格性感高雅、極具女性魅力。適合精緻雕塑感的立體底妝、貓眼眼線與經典紅唇/漿果唇彩。';
+            }
+
+            currentBodyDiagnosis = { 
+                typeKey, typeName, tag, desc, dos, donts, makeupStyle, 
+                height: hVal, weight: wVal, bodyFat: fatVal, bmiText, heightFrameAdvice 
+            };
+            renderBodyDiagnosisUI();
+        }
+
+        function renderBodyDiagnosisUI() {
+            if (!currentBodyDiagnosis) return;
+            const b = currentBodyDiagnosis;
+
+            const resName = document.getElementById('res-body-type-name');
+            const resTag = document.getElementById('res-body-tag');
+            const resBmi = document.getElementById('res-bmi-tag');
+            const resDesc = document.getElementById('res-body-desc');
+            const resAdvice = document.getElementById('res-height-advice-text');
+            const resDos = document.getElementById('res-body-dos');
+            const resDonts = document.getElementById('res-body-donts');
+
+            if (resName) resName.innerText = b.typeName;
+            if (resTag) resTag.innerText = b.tag;
+            if (resBmi) resBmi.innerText = b.bmiText || '';
+            if (resDesc) resDesc.innerText = b.desc;
+            if (resAdvice) resAdvice.innerText = b.heightFrameAdvice || '';
+
+            if (resDos) {
+                resDos.innerHTML = b.dos.map(item => `<li>${escapeHtml(item)}</li>`).join('');
+            }
+            if (resDonts) {
+                resDonts.innerHTML = b.donts.map(item => `<li>${escapeHtml(item)}</li>`).join('');
+            }
+
+            updateCombinedStyleCard();
+        }
+
+        function updateCombinedStyleCard() {
+            const badge = document.getElementById('res-body-type-badge');
+            const clothingBox = document.getElementById('res-clothing-recommendation');
+            const makeupBox = document.getElementById('res-makeup-look-recommendation');
+
+            if (currentBodyDiagnosis) {
+                if (badge) badge.innerText = currentBodyDiagnosis.typeName;
+                if (clothingBox) {
+                    const hAdvice = currentBodyDiagnosis.heightFrameAdvice ? `【身格比例】${currentBodyDiagnosis.heightFrameAdvice}<br><br>` : '';
+                    clothingBox.innerHTML = `${hAdvice}<b>推薦剪裁：</b>${currentBodyDiagnosis.dos.join('、')}<br><br><b>建議避免：</b>${currentBodyDiagnosis.donts.join('、')}`;
+                }
+                if (makeupBox) {
+                    makeupBox.innerText = currentBodyDiagnosis.makeupStyle;
+                }
+            }
+
+            if (currentDiagnosis && makeupBox && currentBodyDiagnosis) {
+                const bestColorNames = currentDiagnosis.bestColors.map(hex => getColorNameFromHex(hex)).join('、');
+                makeupBox.innerHTML = `<b>【個人色彩 ${currentDiagnosis.seasonName} × ${currentBodyDiagnosis.typeName}】</b><br>${currentBodyDiagnosis.makeupStyle}<br><br><b>命定色彩搭配：</b>${bestColorNames}。<br><b>底妝建議：</b>${currentDiagnosis.foundationTexture}，使用 ${currentDiagnosis.shadeCode} 色號。`;
+            }
+        }
+
+        async function generateImagenStyleVisual(promptText) {
+            const apiKey = "";
+            let userBase64 = null;
+
+            if (photoCanvas && currentImage) {
+                try {
+                    userBase64 = photoCanvas.toDataURL('image/jpeg', 0.85);
+                } catch (e) {
+                    userBase64 = uploadedUserImageBase64;
+                }
+            } else if (uploadedUserImageBase64) {
+                userBase64 = uploadedUserImageBase64;
+            }
+
+            if (userBase64) {
+                const cleanBase64 = userBase64.replace(/^data:image\/(png|jpeg|webp|jpg);base64,/, '');
+                const flashImageApiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-image-preview:generateContent?key=${apiKey}`;
+                
+                const payload = {
+                    contents: [{
+                        role: 'user',
+                        parts: [
+                            { text: `Keep the exact facial features, facial structure, eyes, nose, lips, and portrait likeness of the person in this uploaded image. Generate a high-fashion studio editorial photograph of this EXACT same person with her face preserved, wearing a stylish outfit and makeup styled as follows: ${promptText}` },
+                            {
+                                inlineData: {
+                                    mimeType: 'image/jpeg',
+                                    data: cleanBase64
+                                }
+                            }
+                        ]
+                    }],
+                    generationConfig: {
+                        responseModalities: ['IMAGE']
+                    }
+                };
+
+                try {
+                    const response = await fetch(flashImageApiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (response.ok) {
+                        const result = await response.json();
+                        const part = result?.candidates?.[0]?.content?.parts?.find(p => p.inlineData);
+                        if (part) {
+                            return `data:${part.inlineData.mimeType};base64,${part.inlineData.data}`;
+                        }
+                    }
+                } catch (err) {
+                    console.log('Gemini 3.1 Flash Image request failed, falling back to Imagen', err);
+                }
+            }
+
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/imagen-4.0-generate-001:predict?key=${apiKey}`;
+            const payload = {
+                instances: [{ prompt: promptText }],
+                parameters: { sampleCount: 1 }
+            };
+
+            let retries = 0;
+            const maxRetries = 2;
+
+            while (retries < maxRetries) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+                    const result = await response.json();
+                    if (result.predictions && result.predictions.length > 0 && result.predictions[0].bytesBase64Encoded) {
+                        return `data:image/png;base64,${result.predictions[0].bytesBase64Encoded}`;
+                    } else {
+                        throw new Error('Invalid response structure');
+                    }
+                } catch (err) {
+                    retries++;
+                    if (retries >= maxRetries) throw err;
+                    await new Promise(res => setTimeout(res, 1000));
+                }
+            }
+        }
+
+        const btnGenerateAiImage = document.getElementById('btn-generate-ai-image');
+        const aiImageContainer = document.getElementById('ai-image-container');
+        const aiImageLoading = document.getElementById('ai-image-loading');
+        const aiImageResult = document.getElementById('ai-image-result');
+        const imgStylePreview = document.getElementById('img-style-preview');
+
+        if (btnGenerateAiImage) {
+            btnGenerateAiImage.addEventListener('click', async () => {
+                if (!currentDiagnosis) {
+                    showToast('請先進行照片色彩檢定');
+                    return;
+                }
+
+                if (aiImageContainer) aiImageContainer.classList.remove('hidden');
+                if (aiImageLoading) aiImageLoading.classList.remove('hidden');
+                if (aiImageResult) aiImageResult.classList.add('hidden');
+
+                const seasonName = currentDiagnosis.seasonName;
+                const bodyType = currentBodyDiagnosis ? currentBodyDiagnosis.typeName : '時尚身形';
+                const bestColorNames = currentDiagnosis.bestColors.map(hex => getColorNameFromHex(hex)).slice(0, 3).join(', ');
+
+                const prompt = `A studio fashion editorial photography of an East Asian model representing ${seasonName} personal color season, wearing elegant high-fashion outfit tailored for ${bodyType} silhouette, outfit colored in ${bestColorNames}, natural glow makeup, studio soft lighting, Vogue style fashion photography, high detail, 8k.`;
+
+                try {
+                    const imgUrl = await generateImagenStyleVisual(prompt);
+                    if (imgStylePreview) imgStylePreview.src = imgUrl;
+                    if (aiImageLoading) aiImageLoading.classList.add('hidden');
+                    if (aiImageResult) aiImageResult.classList.remove('hidden');
+                    showToast('已成功生成 AI 命定穿搭與妝容視覺圖！');
+                } catch (err) {
+                    if (aiImageLoading) aiImageLoading.classList.add('hidden');
+                    showToast('繪圖生成失敗，請稍後再試');
+                }
+            });
+        }
+
+        async function generateChatImage(promptText, containerId, btnEl) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+
+            btnEl.disabled = true;
+            btnEl.innerHTML = `<i class="fa-solid fa-spinner animate-spin mr-1"></i> Imagen AI 正在繪製中...`;
+
+            try {
+                const imgUrl = await generateImagenStyleVisual(promptText);
+                container.innerHTML = `
+                    <div class="mt-3 p-2 bg-gray-50 rounded-xl border border-gray-200 text-center space-y-1">
+                        <img src="${imgUrl}" alt="AI Style Visual" class="w-full max-w-sm mx-auto rounded-lg shadow-sm object-cover">
+                        <p class="text-[10px] text-gray-400">✨ AI 模擬生成之穿搭配色與造型參考圖</p>
+                    </div>
+                `;
+            } catch (err) {
+                btnEl.disabled = false;
+                btnEl.innerHTML = `<i class="fa-solid fa-triangle-exclamation mr-1 text-amber-500"></i> 生成失敗，點擊重新繪製`;
+            }
+        }
+
+        const chatBox = document.getElementById('chat-box');
+        const chatInput = document.getElementById('chat-input');
+        const btnSendChat = document.getElementById('btn-send-chat');
+
+        if (btnSendChat) btnSendChat.addEventListener('click', sendChatMessage);
+        if (chatInput) {
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') sendChatMessage();
+            });
+        }
+
+        async function sendChatMessage() {
+            if (!chatInput) return;
+            const userMsg = chatInput.value.trim();
+            if (!userMsg) return;
+
+            appendUserMessage(userMsg);
+            chatInput.value = '';
+
+            const thinkingId = appendThinkingBubble();
+
+            try {
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-3-flash-preview:generateContent?key=${apiKey}`;
+
+                let contextSystem = "你是一位極為專業、親切的個人色彩、身材體型與美妝穿搭造型專家（來自 Color Science Lab）。請用簡明扼要、溫柔專業的繁體中文回答使用者的彩妝（妝容）、服飾剪裁、穿搭與色號請教。回答時請使用具體的服飾單品名稱與中文色彩名稱，禁止直接輸出原始的 #HEX 色號碼。";
+                if (currentDiagnosis) {
+                    const cNames = currentDiagnosis.bestColors.map(h => getColorNameFromHex(h)).join('、');
+                    contextSystem += ` 目前使用者的色彩檢定結果為：${currentDiagnosis.seasonName}，適配粉底色號：${currentDiagnosis.shadeCode}，命定色彩名稱：${cNames}。`;
+                }
+                if (currentBodyDiagnosis) {
+                    const b = currentBodyDiagnosis;
+                    contextSystem += ` 使用者的身材體型檢定結果為：${b.typeName}，身材數值：${b.height || '未知'}cm, ${b.weight || '未知'}kg, ${b.bmiText || ''}，身材比例建議：${b.heightFrameAdvice || ''}，適合服飾版型：${b.dos.join('、')}，妝容風格：${b.makeupStyle}。`;
+                }
+
+                const payload = {
+                    contents: [{ role: 'user', parts: [{ text: userMsg }] }],
+                    systemInstruction: { parts: [{ text: contextSystem }] }
+                };
+
+                const res = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                removeBubble(thinkingId);
+
+                if (res.ok) {
+                    const data = await res.json();
+                    const reply = data.candidates?.[0]?.content?.parts?.[0]?.text || "抱歉，我目前無法回應，請稍後再試。";
+                    appendAiMessage(reply);
+                } else {
+                    appendAiMessage(getFallbackAiReply(userMsg));
+                }
+            } catch (err) {
+                removeBubble(thinkingId);
+                appendAiMessage(getFallbackAiReply(userMsg));
+            }
+        }
+
+        function getFallbackAiReply(userQuery) {
+            if (!currentDiagnosis) {
+                return "建議您可以先在頁面上方進行個人色彩與身材體型檢定，這樣我就能為您提供客製化的衣服穿搭與命定妝容建議喔！";
+            }
+            const cNames = currentDiagnosis.bestColors.map(h => getColorNameFromHex(h)).slice(0, 3).join('、');
+            if (userQuery.includes('眼影') || userQuery.includes('彩妝') || userQuery.includes('口紅') || userQuery.includes('妝容')) {
+                return `針對您的 <b>${currentDiagnosis.seasonName}</b>，建議眼影選擇低飽和莫蘭迪紫灰或溫柔大地暖棕色。結合您的 <b>${currentBodyDiagnosis ? currentBodyDiagnosis.typeName : '身材體型'}</b>，整體妝容建議選用：<b>${currentDiagnosis.makeupColors.map(h => getColorNameFromHex(h)).join('、')}</b> 等溫柔唇彩質地。`;
+            }
+            return `對於 <b>${currentDiagnosis.seasonName}</b> 搭配 <b>${currentBodyDiagnosis ? currentBodyDiagnosis.typeName : '體型'}</b>，在服飾穿搭上建議選擇色彩為 <b>${cNames}</b> 的服飾單品，搭配 <b>${currentBodyDiagnosis ? currentBodyDiagnosis.dos[0] : '合身顯瘦剪裁'}</b>，能完美修飾身形並提亮膚色！`;
+        }
+
+        function appendUserMessage(msg) {
+            if (!chatBox) return;
+            const div = document.createElement('div');
+            div.className = 'flex items-start justify-end space-x-3';
+            div.innerHTML = `
+                <div class="bg-brand-900 text-white p-4 rounded-2xl rounded-tr-none shadow-sm max-w-xl leading-relaxed">
+                    ${escapeHtml(msg)}
+                </div>
+                <div class="w-8 h-8 rounded-full bg-brand-200 text-brand-900 flex-shrink-0 flex items-center justify-center text-xs font-bold">您</div>
+            `;
+            chatBox.appendChild(div);
+            chatBox.scrollTop = chatBox.scrollHeight;
+        }
+
+        function appendAiMessage(msgHtml) {
+            if (!chatBox) return;
+            const div = document.createElement('div');
+            div.className = 'flex items-start space-x-3';
+
+            const imgBtnId = 'chat-img-' + Date.now();
+            const imgBoxId = 'chat-img-box-' + Date.now();
+
+            const promptForChat = currentDiagnosis 
+                ? `Fashion photo of an East Asian model showcasing ${currentDiagnosis.seasonName} color outfit and natural makeup style, soft aesthetic lighting.`
+                : `Fashion photo of an East Asian model showcasing elegant style outfit and makeup.`;
+
+            div.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-brand-900 text-white flex-shrink-0 flex items-center justify-center text-xs">AI</div>
+                <div class="bg-white p-4 rounded-2xl rounded-tl-none shadow-sm border border-brand-100 text-gray-700 max-w-xl leading-relaxed space-y-2">
+                    <div>${msgHtml}</div>
+                    <div class="pt-2 border-t border-gray-100">
+                        <button id="${imgBtnId}" class="px-3 py-1.5 rounded-lg bg-brand-50 hover:bg-brand-100 text-brand-900 font-medium text-xs transition border border-brand-200 flex items-center space-x-1.5 cursor-pointer">
+                            <i class="fa-solid fa-palette text-brand-accent"></i>
+                            <span>🎨 點擊生成 AI 穿搭與妝容視覺示意圖</span>
+                        </button>
+                        <div id="${imgBoxId}"></div>
+                    </div>
+                </div>
+            `;
+            chatBox.appendChild(div);
+            chatBox.scrollTop = chatBox.scrollHeight;
+
+            const btn = document.getElementById(imgBtnId);
+            if (btn) {
+                btn.addEventListener('click', () => {
+                    generateChatImage(promptForChat, imgBoxId, btn);
+                });
+            }
+        }
+
+        function appendThinkingBubble() {
+            if (!chatBox) return null;
+            const id = 'thinking-' + Date.now();
+            const div = document.createElement('div');
+            div.id = id;
+            div.className = 'flex items-start space-x-3';
+            div.innerHTML = `
+                <div class="w-8 h-8 rounded-full bg-brand-900 text-white flex-shrink-0 flex items-center justify-center text-xs">AI</div>
+                <div class="bg-white p-3 rounded-2xl rounded-tl-none shadow-sm border border-brand-100 text-gray-400 text-xs flex items-center space-x-2">
+                    <i class="fa-solid fa-spinner animate-spin"></i>
+                    <span>Gemini AI 正在為您分析穿搭配色中...</span>
+                </div>
+            `;
+            chatBox.appendChild(div);
+            chatBox.scrollTop = chatBox.scrollHeight;
+            return id;
+        }
+
+        function removeBubble(id) {
+            const el = document.getElementById(id);
+            if (el) el.remove();
+        }
+
+        const emailModal = document.getElementById('email-modal');
+        const btnEmailModalOpen = document.getElementById('btn-email-modal-open');
+        const btnCloseEmailModal = document.getElementById('btn-close-email-modal');
+        const emailForm = document.getElementById('email-form');
+        const userEmailInput = document.getElementById('user-email-input');
+        const btnCopyEmailText = document.getElementById('btn-copy-email-text');
+        const btnCopyReport = document.getElementById('btn-copy-report');
+
+        if (btnEmailModalOpen) {
+            btnEmailModalOpen.addEventListener('click', () => {
+                if (!currentDiagnosis) {
+                    showToast('請先上傳照片進行檢定');
+                    return;
+                }
+                if (emailModal) emailModal.classList.remove('hidden');
+            });
+        }
+
+        if (btnCloseEmailModal) {
+            btnCloseEmailModal.addEventListener('click', () => {
+                if (emailModal) emailModal.classList.add('hidden');
+            });
+        }
+
+        if (emailModal) {
+            emailModal.addEventListener('click', (e) => {
+                if (e.target === emailModal) emailModal.classList.add('hidden');
+            });
+        }
+
+        function getFormattedReportText() {
+            if (!currentDiagnosis) return "";
+            const d = currentDiagnosis;
+            const b = currentBodyDiagnosis;
+            const bestNames = d.bestColors.map(h => getColorNameFromHex(h)).join('、');
+            const makeupNames = d.makeupColors.map(h => getColorNameFromHex(h)).join('、');
+
+            let bodyMetricsText = b ? b.typeName : '未檢定';
+            if (b && b.height > 0) {
+                bodyMetricsText += ` (${b.height}cm / ${b.weight}kg${b.bodyFat > 0 ? ' / 體脂' + b.bodyFat + '%' : ''} · ${b.bmiText})`;
+            }
+
+            return `【Color Science Lab】個人色彩與身材體型診斷報告\n` +
+                   `--------------------------------------------------\n` +
+                   `◆ 四季型態分類：${d.seasonName}\n` +
+                   `◆ 冷暖底色屬性：${d.isWarm ? '暖色調 (Warm Undertone)' : '冷色調 (Cool Undertone)'}\n` +
+                   `◆ 推薦大眾粉底色號：${d.shadeCode}\n` +
+                   `◆ 底妝質地與光效：${d.foundationTexture}\n` +
+                   `◆ 防曬飾底校色：${d.sunscreenTip}\n\n` +
+                   `◆ 命定穿搭色彩：${bestNames}\n` +
+                   `◆ 命定彩妝唇彩：${makeupNames}\n` +
+                   `◆ 飾品金屬建議：${d.jewelryText}\n\n` +
+                   `◆ 身材體型與身高：${bodyMetricsText}\n` +
+                   `◆ 身高線條建議：${b && b.heightFrameAdvice ? b.heightFrameAdvice : '合身比例'}\n` +
+                   `◆ 服飾推薦剪裁：${b ? b.dos.join('、') : '合身比例'}\n` +
+                   `--------------------------------------------------\n` +
+                   `Color Science Lab - Asian Skin & Personal Color Institute`;
+        }
+
+        if (btnCopyReport) {
+            btnCopyReport.addEventListener('click', () => {
+                copyReportToClipboard();
+            });
+        }
+
+        if (btnCopyEmailText) {
+            btnCopyEmailText.addEventListener('click', () => {
+                copyReportToClipboard();
+            });
+        }
+
+        function copyReportToClipboard() {
+            const reportText = getFormattedReportText();
+            if (!reportText) {
+                showToast('請先進行色彩檢定');
+                return;
+            }
+            const tempInput = document.createElement('textarea');
+            tempInput.value = reportText;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand('copy');
+            document.body.removeChild(tempInput);
+            showToast('已複製診斷報告全文至剪貼簿！');
+        }
+
+        if (emailForm) {
+            emailForm.addEventListener('submit', (e) => {
+                e.preventDefault();
+                const email = userEmailInput ? userEmailInput.value.trim() : '';
+                if (!email || !currentDiagnosis) return;
+
+                const submitBtn = document.getElementById('btn-send-email-submit');
+                const actionsContainer = document.getElementById('email-success-actions');
+                const btnGmail = document.getElementById('btn-open-gmail');
+                const btnOutlook = document.getElementById('btn-open-outlook');
+
+                if (submitBtn) {
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = `<i class="fa-solid fa-spinner animate-spin mr-1"></i> 正在處理診斷簡報...`;
+                }
+
+                const subject = `【Color Science Lab】個人色彩學檢定簡報 - ${currentDiagnosis.seasonName}`;
+                const reportContent = getFormattedReportText();
+
+                copyReportToClipboard();
+
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = `<i class="fa-solid fa-check mr-1 text-emerald-400"></i> 已處理完成！內文已自動複製`;
+                    submitBtn.className = "w-full py-3.5 rounded-xl bg-emerald-800 text-white font-bold text-xs shadow flex items-center justify-center space-x-2";
+                }
+
+                if (actionsContainer) actionsContainer.classList.remove('hidden');
+
+                if (btnGmail) {
+                    btnGmail.onclick = () => {
+                        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(email)}&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(reportContent)}`;
+                        window.open(gmailUrl, '_blank');
+                    };
+                }
+
+                if (btnOutlook) {
+                    btnOutlook.onclick = () => {
+                        const outlookUrl = `https://outlook.office.com/mail/0/deeplink/compose?to=${encodeURIComponent(email)}&subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(reportContent)}`;
+                        window.open(outlookUrl, '_blank');
+                    };
+                }
+
+                showToast(`診斷簡報已處理完成！報告已複製，可直接點擊開啟 Gmail / Outlook 寄出`);
+            });
+        }
+
+        function renderSwatches(containerId, colorArray) {
+            const container = document.getElementById(containerId);
+            if (!container) return;
+            container.innerHTML = '';
+            colorArray.forEach(hex => {
+                const colorName = getColorNameFromHex(hex);
+                const swatch = document.createElement('div');
+                swatch.className = 'h-10 rounded-lg shadow-sm border border-black/10 flex items-center justify-center transition transform hover:scale-105 cursor-pointer group relative';
+                swatch.style.backgroundColor = hex;
+                swatch.title = `${colorName} (${hex})`;
+
+                const hexLabel = document.createElement('span');
+                hexLabel.className = 'text-[9px] font-medium bg-black/75 text-white px-1.5 py-0.5 rounded opacity-0 group-hover:opacity-100 transition truncate max-w-[90%]';
+                hexLabel.innerText = colorName;
+                swatch.appendChild(hexLabel);
+
+                container.appendChild(swatch);
+            });
+        }
+
+        // Utility Functions
+        function rgbToHsl(r, g, b) {
+            r /= 255; g /= 255; b /= 255;
+            const max = Math.max(r, g, b), min = Math.min(r, g, b);
+            let h = 0, s = 0, l = (max + min) / 2;
+
+            if (max !== min) {
+                const d = max - min;
+                s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+                switch (max) {
+                    case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+                    case g: h = (b - r) / d + 2; break;
+                    case b: h = (r - g) / d + 4; break;
+                }
+                h /= 6;
+            }
+            return {
+                h: Math.round(h * 360),
+                s: Math.round(s * 100),
+                l: Math.round(l * 100)
+            };
+        }
+
+        function rgbToHex(r, g, b) {
+            return "#" + [r, g, b].map(x => {
+                const hex = Math.round(x).toString(16);
+                return hex.length === 1 ? '0' + hex : hex;
+            }).join('');
+        }
+
+        function showToast(text) {
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-6 right-6 z-50 bg-brand-900 text-white px-5 py-3 rounded-xl shadow-xl text-xs font-medium flex items-center space-x-2 transition transform translate-y-4 opacity-0';
+            toast.innerHTML = `<i class="fa-solid fa-circle-info text-brand-accent"></i> <span>${text}</span>`;
+            document.body.appendChild(toast);
+
+            setTimeout(() => {
+                toast.classList.remove('translate-y-4', 'opacity-0');
+            }, 50);
+
+            setTimeout(() => {
+                toast.classList.add('translate-y-4', 'opacity-0');
+                setTimeout(() => toast.remove(), 300);
+            }, 3000);
+        }
+
+        function escapeHtml(text) {
+            if (!text) return "";
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
+        }
+    </script>
+</body>
+</html>
